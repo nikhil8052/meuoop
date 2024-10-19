@@ -1,0 +1,232 @@
+<html></html>
+ <head>
+  <title>
+   Meuoop - Animations/UI Motion
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .header .nav {
+            display: flex;
+            align-items: center;
+        }
+        .header .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        .header .nav .get-pro {
+            background-color: #6c63ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .header .nav .get-pro i {
+            margin-left: 5px;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .profile img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #2a2a2a;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .sidebar a.active {
+            background-color: #444;
+        }
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .main-content .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .main-content .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        .main-content .breadcrumb a::after {
+            content: '>';
+            margin-left: 5px;
+        }
+        .main-content .breadcrumb a:last-child::after {
+            content: '';
+        }
+        .main-content .title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .main-content .filters {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .main-content .filters button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .main-content .filters button.active {
+            background-color: #fff;
+            color: #000;
+        }
+        .main-content .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .main-content .card {
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .main-content .card img {
+            width: 100%;
+            height: auto;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <div class="logo">
+     Meuoop
+    </div>
+    <div class="nav">
+     <a href="#">
+      Home
+     </a>
+     <a href="#">
+      Get Inspiration
+     </a>
+     <a class="get-pro" href="#">
+      Get Pro
+      <i class="fas fa-arrow-right">
+      </i>
+     </a>
+     <div class="profile">
+      <img alt="User profile picture" height="30" src="https://storage.googleapis.com/a1aa/image/OmNG83vfVfjkLULUefCy2EcR4kLgqZbfAavWCTSa33xkcfE6E.jpg" width="30"/>
+     </div>
+    </div>
+   </div>
+   <div class="sidebar">
+    <a class="active" href="#">
+     UX Flows
+    </a>
+    <a href="#">
+     UI Elements
+    </a>
+    <a href="#">
+     Landing Pages
+    </a>
+    <a href="#">
+     UI Motion
+    </a>
+   </div>
+   <div class="main-content">
+    <div class="breadcrumb">
+     <a href="#">
+      Home
+     </a>
+     <a href="#">
+      App UI
+     </a>
+    </div>
+    <div class="title">
+     Animations/UI Motion
+    </div>
+    <div class="filters">
+     <button class="active">
+      All
+     </button>
+     <button>
+      Successful States
+     </button>
+     <button>
+      Interactions
+     </button>
+     <button>
+      Card Animations
+     </button>
+     <button>
+      Icons Animation
+     </button>
+     <button>
+      Splash screen
+     </button>
+     <button>
+      Onboarding
+     </button>
+    </div>
+    <div class="cards">
+     <div class="card">
+      <img alt="Energy Flow UI design" height="200" src="https://storage.googleapis.com/a1aa/image/9AhZySi5L7piPlWdUweY26Rsen6Gq79F9XIgrN7xHeQ62nQnA.jpg" width="300"/>
+     </div>
+     <div class="card">
+      <img alt="Fitness &amp; Health Training UI design" height="200" src="https://storage.googleapis.com/a1aa/image/RohDFtLEZ4K8C1v7e0GJGkv4HElH3c8OIZ4pstk4s66y9J0JA.jpg" width="300"/>
+     </div>
+     <div class="card">
+      <img alt="Perfume advertisement UI design" height="200" src="https://storage.googleapis.com/a1aa/image/saeUQLOqh4zvJSxe40GSfZKfMJDguW1oXFwUWh4EpAtEuPhOB.jpg" width="300"/>
+     </div>
+     <div class="card">
+      <img alt="Dystopian Echos game UI design" height="200" src="https://storage.googleapis.com/a1aa/image/wvI27yPt3AKULdcenRbLQpEXJEaslMN5xVQe1fnthmw82nQnA.jpg" width="300"/>
+     </div>
+     <div class="card">
+      <img alt="Comic book UI design" height="200" src="https://storage.googleapis.com/a1aa/image/SXhks550GIojIlY35fehCxKhs4bcefTqp8xEIO7NuZwDuPhOB.jpg" width="300"/>
+     </div>
+     <div class="card">
+      <img alt="Workflow UI design" height="200" src="https://storage.googleapis.com/a1aa/image/kNyL9TuEYt6YL1UwerbDEfgtEFW8WzXeVOtC1mLTHFJH3nQnA.jpg" width="300"/>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

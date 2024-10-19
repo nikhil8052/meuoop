@@ -1,0 +1,302 @@
+<html></html>
+ <head>
+  <title>
+   Meuoop
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        .header .left {
+            display: flex;
+            align-items: center;
+        }
+        .header .left i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .header .left span {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .header .right {
+            display: flex;
+            align-items: center;
+        }
+        .header .right .search-bar {
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            color: #fff;
+            margin-right: 20px;
+        }
+        .header .right .button {
+            background-color: #4a4a4a;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .header .right .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .right .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .breadcrumb span {
+            margin-right: 5px;
+        }
+        .breadcrumb i {
+            margin-right: 5px;
+        }
+        .main-content {
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .sidebar .menu-item i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .sidebar .menu-item span {
+            font-size: 16px;
+        }
+        .content {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .content .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .content .tabs .tab {
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .content .tabs .tab.active {
+            background-color: #4a4a4a;
+        }
+        .content .section {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .content .section .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .content .section .screens {
+            display: flex;
+            overflow-x: auto;
+        }
+        .content .section .screens img {
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+        .content .section .cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .content .section .cta .button {
+            background-color: #4a4a4a;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .cta-section {
+            background-color: #2a2a2a;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cta-section .cta-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .cta-section .cta-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .cta-section .cta-button {
+            background-color: #4a4a4a;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <div class="left">
+     <i class="fas fa-bars">
+     </i>
+     <span>
+      Meuoop
+     </span>
+    </div>
+    <div class="right">
+     <input class="search-bar" placeholder="Search app screen" type="text"/>
+     <button class="button">
+      Get Inspiration
+     </button>
+     <button class="button">
+      Get Pro
+     </button>
+     <div class="profile">
+      <img alt="Profile Picture" height="40" src="https://storage.googleapis.com/a1aa/image/feX2dlLsv9pXeJ3NjWxveH1j89CSoI90NGwcfklgrPwT8fE6E.jpg" width="40"/>
+     </div>
+    </div>
+   </div>
+   <div class="breadcrumb">
+    <span>
+     Home
+    </span>
+    <i class="fas fa-chevron-right">
+    </i>
+    <span>
+     UX Flows
+    </span>
+    <i class="fas fa-chevron-right">
+    </i>
+    <span>
+     Grab Driver
+    </span>
+   </div>
+   <div class="main-content">
+    <div class="sidebar">
+     <div class="menu-item">
+      <i class="fas fa-th-large">
+      </i>
+      <span>
+       UX Flows
+      </span>
+     </div>
+     <div class="menu-item">
+      <i class="fas fa-palette">
+      </i>
+      <span>
+       UI Elements
+      </span>
+     </div>
+     <div class="menu-item">
+      <i class="fas fa-file-alt">
+      </i>
+      <span>
+       Landing Pages
+      </span>
+     </div>
+    </div>
+    <div class="content">
+     <div class="tabs">
+      <div class="tab active">
+       Onboarding
+      </div>
+      <div class="tab">
+       Analytics
+      </div>
+      <div class="tab">
+       Calendar
+      </div>
+      <div class="tab">
+       Feed
+      </div>
+      <div class="tab">
+       Filter
+      </div>
+      <div class="tab">
+       Profile
+      </div>
+     </div>
+     <div class="section">
+      <div class="title">
+       Onboarding Flow
+      </div>
+      <div class="screens">
+       <img alt="Onboarding screen 1" height="300" src="https://storage.googleapis.com/a1aa/image/DhCRmWQ06dLfEqc8OY9Pkbab9LM5qyTpycvV9MVmbVuufToTA.jpg" width="150"/>
+       <img alt="Onboarding screen 2" height="300" src="https://storage.googleapis.com/a1aa/image/A7E18zfkPUWRZapZfqzX3fZu8vMM6P3fY4l0OyG5oLai9PhOB.jpg" width="150"/>
+       <img alt="Onboarding screen 3" height="300" src="https://storage.googleapis.com/a1aa/image/BQkA4fA2IrTyXyMhqcD9bXBO9ufC294VOcJfj68DXhaQfPhOB.jpg" width="150"/>
+       <img alt="Onboarding screen 4" height="300" src="https://storage.googleapis.com/a1aa/image/BeedDvKnIdneLoMJYiX6cK5yDKennuHqJHcJuAPaSt2p9PhOB.jpg" width="150"/>
+       <img alt="Onboarding screen 5" height="300" src="https://storage.googleapis.com/a1aa/image/ffa9MdzasvrAL0oTYG18XJFxCDpkCUVa3UQfyuoilgQ3ePhOB.jpg" width="150"/>
+       <img alt="Onboarding screen 6" height="300" src="https://storage.googleapis.com/a1aa/image/JrCb3ZXum856Ppdc7o0s0yzWNpswWvtSkdCyUZECwjJ5fJ0JA.jpg" width="150"/>
+      </div>
+     </div>
+     <div class="section">
+      <div class="title">
+       Analytics
+      </div>
+      <div class="screens">
+       <img alt="Analytics screen 1" height="300" src="https://storage.googleapis.com/a1aa/image/65Br1d1LjQJmFVnB7KiXHn29TFPfQn309eV4OdBpbzCpfnQnA.jpg" width="150"/>
+       <img alt="Analytics screen 2" height="300" src="https://storage.googleapis.com/a1aa/image/X8ttYFcGk0LMHVFCike3yrHvamR2gewDmTeFeuaksicVefE6E.jpg" width="150"/>
+       <img alt="Analytics screen 3" height="300" src="https://storage.googleapis.com/a1aa/image/yr7NQ4BSQf2SGC8Pkqq0LMcapfUPeSd2rpzLKk7TxJj8ePhOB.jpg" width="150"/>
+       <img alt="Analytics screen 4" height="300" src="https://storage.googleapis.com/a1aa/image/w9z1toVAZfTSOq4iQlfsUDv4QmHuGZhAp7dSvEeW3YlPfPhOB.jpg" width="150"/>
+       <img alt="Analytics screen 5" height="300" src="https://storage.googleapis.com/a1aa/image/eTGYT2FoqgUwKqr7uCS5KP3YSJ1zhDDnMQpEhAcHgWefePhOB.jpg" width="150"/>
+       <img alt="Analytics screen 6" height="300" src="https://storage.googleapis.com/a1aa/image/jT49qnHAllpED12F0RW5aodOfYGLHKyXcEe85fgoE9pCfPhOB.jpg" width="150"/>
+      </div>
+      <div class="cta">
+       <button class="button">
+        Get Pro
+       </button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="cta-section">
+    <div class="cta-title">
+     Access all 3,000+ Screens
+    </div>
+    <div class="cta-text">
+     Get unlimited access to the full library and other products from 25/month - Cancel anytime
+    </div>
+    <button class="cta-button">
+     Get Pro
+    </button>
+   </div>
+  </div>
+ </body>
+</html>

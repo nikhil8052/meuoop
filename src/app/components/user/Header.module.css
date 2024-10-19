@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #2A2A2A;
+    padding: 10px;
+    border-radius: 8px;
+}
+.actions {
+    display: flex;
+    align-items: center;
+}
+.profileImg {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.menuToggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}

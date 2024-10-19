@@ -1,0 +1,415 @@
+<html></html>
+ <head>
+  <title>
+   Meuooop
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #2A2A2A;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .header .nav {
+            display: flex;
+            align-items: center;
+        }
+        .header .nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .header .nav .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #333333;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .header .nav .search-bar input {
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            margin-left: 10px;
+            outline: none;
+        }
+        .header .nav .get-pro {
+            background-color: #6C63FF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .header .nav .profile {
+            margin-left: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .header .nav .profile img {
+            width: 40px;
+            height: 40px;
+        }
+        .header .nav .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .header .nav .menu {
+            display: flex;
+        }
+        @media (max-width: 768px) {
+            .header .nav .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #2A2A2A;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                padding: 20px;
+            }
+            .header .nav .menu.active {
+                display: flex;
+            }
+            .header .nav .hamburger {
+                display: block;
+            }
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #2A2A2A;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .menu-item {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #333333;
+            border-radius: 10px;
+            text-align: center;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        .sidebar .menu-item.active {
+            background-color: #6C63FF;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filters select {
+            background-color: #333333;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .card .description {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card .description img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .card .description .text {
+            font-size: 14px;
+        }
+        .show-more {
+            background-color: #FFFFFF;
+            color: #333333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            width: 100%;
+            background-color: #2A2A2A;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .footer .social-icons i {
+            font-size: 24px;
+            color: #FFFFFF;
+        }
+        .footer .links {
+            display: flex;
+            gap: 40px;
+        }
+        .footer .links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer .brand {
+            font-size: 72px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.1);
+        }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <div class="logo">
+    Meuooop
+   </div>
+   <div class="nav">
+    <div class="hamburger" onclick="toggleMenu()">
+     <i class="fas fa-bars">
+     </i>
+    </div>
+    <div class="menu">
+     <a href="#">
+      Home
+     </a>
+     <a href="#">
+      Landing...
+     </a>
+     <div class="search-bar">
+      <i class="fas fa-search">
+      </i>
+      <input placeholder="Search app screen" type="text"/>
+     </div>
+     <a class="get-pro" href="#">
+      Get Pro
+      <i class="fas fa-arrow-right">
+      </i>
+     </a>
+     <div class="profile">
+      <img alt="Profile Picture" height="40" src="https://storage.googleapis.com/a1aa/image/5AzaDCB1QIrhE1mNxI7bRng2e7rt78fjcsDcrHGadl2L2ToTA.jpg" width="40"/>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container">
+   <div class="sidebar">
+    <div class="menu-item">
+     UX Flows
+    </div>
+    <div class="menu-item">
+     UI Elements
+    </div>
+    <div class="menu-item active">
+     Landing Pages
+    </div>
+   </div>
+   <div class="main-content">
+    <div class="filters">
+     <select>
+      <option>
+       Theme
+      </option>
+     </select>
+     <select>
+      <option>
+       Industries
+      </option>
+     </select>
+     <select>
+      <option>
+       Device
+      </option>
+     </select>
+     <select>
+      <option>
+       Page Type
+      </option>
+     </select>
+    </div>
+    <div class="cards">
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="card">
+      <img alt="App Screen" height="200" src="https://storage.googleapis.com/a1aa/image/CAxNFKitIeyfqEpYG4kTzDwHlKd7s6MikMY7l0yxfsaYsnQnA.jpg" width="300"/>
+      <div class="description">
+       <img alt="Grab Driver Logo" height="30" src="https://storage.googleapis.com/a1aa/image/rtsqZ3ooZezfgU9NXCXuDe5ION9DLwFnTWUccuUlfC37YPhOB.jpg" width="30"/>
+       <div class="text">
+        <div>
+         Grab Driver
+        </div>
+        <div>
+         45 Screens
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="show-more">
+     Show more
+    </div>
+   </div>
+  </div>
+  <div class="footer">
+   <div class="social-icons">
+    <i class="fab fa-linkedin">
+    </i>
+    <i class="fab fa-xing">
+    </i>
+    <i class="fab fa-instagram">
+    </i>
+   </div>
+   <div class="links">
+    <a href="#">
+     About Us
+    </a>
+    <a href="#">
+     Read Our Blog
+    </a>
+    <a href="#">
+     Contact Us
+    </a>
+    <a href="#">
+     Pricing
+    </a>
+    <a href="#">
+     Privacy Policy
+    </a>
+    <a href="#">
+     Terms &amp; Conditions
+    </a>
+    <a href="#">
+     FAQ
+    </a>
+    <a href="#">
+     Blogs
+    </a>
+    <a href="#">
+     new arrival
+    </a>
+   </div>
+   <div class="brand">
+    Meuooop
+   </div>
+  </div>
+  <script>
+   function toggleMenu() {
+            const menu = document.querySelector('.header .nav .menu');
+            menu.classList.toggle('active');
+        }
+  </script>
+ </body>
+</html>

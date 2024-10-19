@@ -1,0 +1,21 @@
+.faq {
+    margin: 40px 0;
+}
+.faq h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.question {
+    background-color: #2A2A2A;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.question h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.question p {
+    margin: 10px 0;
+}

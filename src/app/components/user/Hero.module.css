@@ -1,0 +1,44 @@
+.hero {
+    text-align: center;
+    padding: 60px 0;
+    background-color: #2A2A2A;
+    border-radius: 20px;
+    position: relative;
+}
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #3A3A3A;
+    border-radius: 10px;
+}
+.hero::before {
+    top: 20px;
+    left: 20px;
+}
+.hero::after {
+    bottom: 20px;
+    right: 20px;
+}
+.hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+.hero p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+.hero .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.hero .buttons button {
+    background-color: #3A3A3A;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
