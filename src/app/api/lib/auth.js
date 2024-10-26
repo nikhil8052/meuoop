@@ -13,6 +13,6 @@ export function authenticate(req) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return decoded;
   } catch (err) {
-    throw new Error('Invalid token');
+    throw new Error(err );
   }
 }
