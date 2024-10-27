@@ -3,6 +3,7 @@ import { connectToDatabase } from '../lib/mongodb';
 import User from '../models/User';
 
 export async function GET(req) {
+  console.log( res);
   try {
     await connectToDatabase(); 
     const users = await User.find(); 

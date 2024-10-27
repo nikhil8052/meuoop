@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 let isConnected = false;
 
 export async function GET(req) {
+  console.log(req)
   // Check if already connected
   if (isConnected) {
     return new Response(JSON.stringify({ message: 'Already connected to MongoDB.' }), {

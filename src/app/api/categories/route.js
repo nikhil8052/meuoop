@@ -4,6 +4,7 @@ import { connectToDatabase } from '../lib/mongodb';
 import Category from '../models/Category';
 
 export async function GET(req) {
+    console.log(req)
     try {
       await connectToDatabase(); 
       const data = await Category.find(); 
