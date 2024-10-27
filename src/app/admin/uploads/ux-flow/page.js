@@ -1,14 +1,14 @@
 import React from 'react'
+import Image from 'next/image';
 
 export default function page() {
   return (
     
     <>
-    
     <div class="header">
         <div class="logo">
             Meuooop
-            <span>ADMIN</span>
+            <span>Upload UX Flow</span>
         </div>
         <div class="buttons">
             <button class="preview">Preview</button>
@@ -16,28 +16,28 @@ export default function page() {
             <button class="publish">Publish</button>
         </div>
     </div>
-    <div class="container">
+    <div class="upload_flow_container">
         <div class="upload-icon">
-            <i class="fas fa-upload"></i>
+            <Image height={100} width={100} src='/images/upload_icon.svg'/>
         </div>
-        <div class="input-group">
+        <div class="input-group mb-2">
             <input type="text" placeholder="App Name"/>
             <input type="text" placeholder="Description"/>
         </div>
-        <div class="search-group">
+        <div class="search-group mb-2 ">
             <div class="search-bar">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search apps or flows"/>
             </div>
             <div class="categories">
-                <div class="category active">App Category</div>
-                <div class="category inactive">App Category</div>
-                <div class="category inactive">App Category</div>
-                <div class="category inactive">App Category</div>
-                <div class="category inactive">App Category</div>
+                <div class="category active">WhatApps</div>
+                <div class="category inactive">Tik Tok</div>
+                <div class="category inactive">Instagram</div>
+                <div class="category inactive">In Drive</div>
+                <div class="category inactive">Google </div>
             </div>
         </div>
-        <button class="next-button">Next</button>
+        <button class="next-button">Save </button>
     </div>
     </>
   )

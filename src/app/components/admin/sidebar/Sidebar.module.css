@@ -21,6 +21,29 @@
 
 }
 
+.sidebar_logo_div{
+    margin-bottom: 10px;
+
+}
+.sidebar_menu_items{
+    padding: 0px ;
+}
+.sidebar_menu_items li {
+    padding-bottom: 10px ;
+    text-align: left;
+    /* border-bottom: 1px solid white ; */
+
+}
+.sidebar_menu_items li  a{
+    text-decoration: none ;
+    color: white ;   
+    font-size: 19px ; 
+}
+
+.sidebar_menu_items li  a:hover{
+    color: blue ;   
+}
+
 .title {
     font-size: 24px;
     font-weight: bold;

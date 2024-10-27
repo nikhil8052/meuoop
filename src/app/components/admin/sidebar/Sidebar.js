@@ -1,17 +1,24 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import sidebar from './Sidebar.module.css';
 const Sidebar = () => {
     return (
         <div className={sidebar.mainDiv}>
-            <div className="d-flex align-items-center">
-                <img src="/images/admin_logo.svg" alt="Meuoop Logo" width={150} height={50} /> {/* Use img tag directly */}
+            <div className={sidebar.sidebar_logo_div}>
+                <Image src="/images/admin_logo.svg" alt="Meuoop Logo" width={150} height={31} /> {/* Use img tag directly */}
             </div>
-            <ul className="list-unstyled mt-3"> {/* Added margin-top for spacing */}
+            <ul className={sidebar.sidebar_menu_items}> {/* Added margin-top for spacing */}
                 <li>
                     <Link href="/admin/dashboard">Dashboard</Link>
                 </li>
                 <li>
                     <Link href="/admin/users">Users</Link>
+                </li>
+                <li>
+                    <Link href="/admin/users/add">Add User</Link>
+                </li>
+                <li>
+                    <Link href="/admin/uploads/ux-flow">Add UX Flow</Link>
                 </li>
                 <li>
                     <Link href="/admin/settings">Settings</Link>
