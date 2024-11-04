@@ -1,0 +1,63 @@
+<html>
+<head>
+    <style>
+        body {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .menu-item {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-item.active {
+            background-color: #6e00ff;
+            color: #ffffff;
+        }
+        .menu-item i {
+            font-size: 12px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-item active">
+            <span>Toggle</span>
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="menu-item">
+            <span>Buttons</span>
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="menu-item">
+            <span>Cards</span>
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="menu-item">
+            <span>Navigation</span>
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="menu-item">
+            <span>Profile</span>
+            <i class="fas fa-check"></i>
+        </div>
+    </div>
+</body>
+</html>

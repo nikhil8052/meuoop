@@ -202,3 +202,87 @@
 }
 
 /* End Dashboard Page Css  */
+
+
+/* UX FLOW DESIGN  */
+
+
+.second_step_main_div{
+    display: flex ;
+    min-height: 100vh;
+}
+.second_step_left_div{
+    border-right: 1px solid #E0E0E0;
+    padding: 20px ;
+}
+
+.app_name_container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.app_icon {
+    width: 40px;
+    height: 40px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.app_name {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    flex-grow: 1;
+}
+.edit_con {
+    font-size: 16px;
+    color: #333;
+}
+.mobile-web-view{
+    display: flex ;
+    gap: 10px ;
+}
+
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.menu-item {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.menu-item.active {
+    background-color: #6e00ff;
+    color: #ffffff;
+}
+.menu-item i {
+    font-size: 12px;
+}
+
+.second_step_left_div,
+.second_step_right_div{
+  flex: 1 1 20%; /* Takes up 20% of the width */
+  background-color: #f0f0f0; /* Optional: background for clarity */
+}
+
+.second_step_mid_div {
+  flex: 1 1 60%; /* Takes up 60% of the width */
+  background-color: #e0e0e0; /* Optional: background for clarity */
+}
+
+
+
+/* END UX FLOW DESIGN */
