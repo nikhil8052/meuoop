@@ -16,26 +16,35 @@ export default function Page() {
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
+
     if (!file) {
       console.error("No file selected");
       return;
     }
-  
+
     const formData = new FormData();
-    formData.append("image", file);
-  
+    formData.set("image", file);
+
     try {
-      const response = await axios.post("http://localhost:3000/api/images", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await fetch("http://localhost:3000/api/images", {
+        method: "POST",
+        body: formData,
       });
-      setImages((prevImages) => [...prevImages, response.data]); // Store the response data
-      console.log("Image uploaded successfully:", response.data);
+      const data = await response.json();
+
+      console.log( data , " This is the response ")
+      if (data.url) {
+        setImages([...images, data.url]);
+      }
+
+      console.log(images , " These are the iamge ")
+      console.log("Image uploaded successfully:", data);
     } catch (error) {
-      console.error("Error uploading image:", error.response ? error.response.data : error.message);
-      alert("Upload failed: " + (error.response ? error.response.data.error : error.message));
+      console.error("Error uploading image:", error.message);
+      alert("Upload failed: " + error.message);
     }
   };
-    
+
 
   const handleNextStep = async (values, { setSubmitting }) => {
     try {
@@ -130,8 +139,8 @@ export default function Page() {
             <div className="add_new_image">
               <input type="file" onChange={handleImageUpload} />
               <div className="uploaded-images">
-                {images.map((img) => (
-                  <img key={img._id} src={img.path} alt="Uploaded" width={100} height={100} />
+                {images.map((img, index ) => (
+                  <img key={index} src={img} alt="Uploaded" width={100} height={100} />
                 ))}
               </div>
               <button onClick={() => document.querySelector("input[type='file']").click()}>

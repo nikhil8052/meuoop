@@ -29,6 +29,15 @@ export async function GET() {
 
 export async function POST(req) {
   try {
+
+    return new Response( {
+      status: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+
     await connectToDatabase();
 
     const { id, name, description, type, status } = await req.json();
