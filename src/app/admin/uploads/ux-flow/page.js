@@ -16,6 +16,7 @@ export default function Page() {
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
+    console.log( file , " This is th efile ")
     if (!file) {
       console.error("No file selected");
       return;

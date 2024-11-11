@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      const uploadDir = './public/uploads';
+      const uploadDir = '/public/uploads342';
       // Ensure the upload directory exists
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
@@ -18,6 +18,7 @@ const upload = multer({
     },
   }),
 });
+
 
 // Middleware to handle multer upload
 const uploadMiddleware = (req) => {
@@ -37,6 +38,7 @@ export async function POST(req) {
     // Use the middleware to handle the upload
     const file = await uploadMiddleware(req);
 
+    console.log('not coming here ',file)
     // If file upload was successful, return the file path
     if (file) {
       const filePath = `/uploads/${file.filename}`;
