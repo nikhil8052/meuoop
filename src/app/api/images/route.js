@@ -1,56 +1,57 @@
-import multer from 'multer';
-import fs from 'fs';
-import { NextResponse } from 'next/server';
+import { writeFile } from "fs/promises";
+import { NextResponse } from "next/server"; // Ensure NextResponse is imported correctly
+const { connection } = require('../lib/db'); // Adjust path as needed
 
-// Configure multer for file upload
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      const uploadDir = '/public/uploads342';
-      // Ensure the upload directory exists
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
-      cb(null, uploadDir); // Specify the directory where images will be stored
-    },
-    filename: (req, file, cb) => {
-      cb(null, `${Date.now()}-${file.originalname}`); // Generate unique file names
-    },
-  }),
-});
-
-
-// Middleware to handle multer upload
-const uploadMiddleware = (req) => {
-  return new Promise((resolve, reject) => {
-    upload.single('image')(req, {}, (err) => {
-      if (err) {
-        return reject(err);
-      }
-      resolve(req.file); // Return the uploaded file information
-    });
-  });
-};
-
-// Define the POST handler for image upload
 export async function POST(req) {
   try {
-    // Use the middleware to handle the upload
-    const file = await uploadMiddleware(req);
+    const data = await req.formData();
+    const file = data.get('image');
+    const flowId = data.get('flow_id'); // Assume flow_id is provided in the formData
+    const status = data.get('status'); // Assume flow_id is provided in the formData
+    const order_id = data.get('order_id'); // Assume flow_id is provided in the formData
 
-    console.log('not coming here ',file)
-    // If file upload was successful, return the file path
-    if (file) {
-      const filePath = `/uploads/${file.filename}`;
-      return NextResponse.json({ path: filePath, _id: Date.now().toString() });
-    } else {
-      return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+
+
+    if (!file) {
+      return new Response(JSON.stringify({ message: "Image not found" }), { status: 401 });
     }
+
+    if (!flowId) {
+      return new Response(JSON.stringify({ message: "flow_id is required" }), { status: 400 });
+    }
+
+    const byteData = await file.arrayBuffer();
+    const buffer = Buffer.from(byteData);
+    const fileName = `${Date.now()}-${file.name}`; // Unique name to avoid overwriting
+    const filePath = `./public/${fileName}`; // Ensure this path is correct and accessible
+
+    // Write the file to the public directory
+    await writeFile(filePath, buffer);
+
+    // Save the file path and flow_id in the database
+    const query = `INSERT INTO images (flow_id, url, order_id, status) VALUES (?, ?, ?,?)`;
+    await new Promise((resolve, reject) => {
+      connection.query(query, [flowId, fileName, order_id, status], (err, results) => {
+        if (err) {
+          console.error("Error saving image to database:", err);
+          return reject(
+            new Response(JSON.stringify({ message: "Database error", details: err.message }), {
+              status: 500,
+              headers: { "Content-Type": "application/json" },
+            })
+          );
+        }
+        resolve(results);
+      });
+    });
+
+    // Return success response with the file URL
+    return NextResponse.json({ message: "Upload and save successful", url: `/${fileName}` });
   } catch (error) {
-    console.error("Error during upload:", error.message);
-    return NextResponse.json(
-      { error: `Upload failed: ${error.message}` },
-      { status: 500 }
-    );
+    console.error("Error uploading file:", error);
+    return new Response(JSON.stringify({ message: "Error uploading file", details: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }

@@ -1,17 +1,15 @@
-// src/pages/signup.js
 'use client';
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const Signup = () => {
-  // State for messages
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
   // Define the validation schema using Yup
   const validationSchema = Yup.object({
-    username: Yup.string()
+    name: Yup.string()
       .min(3, 'Username must be at least 3 characters')
       .required('Username is required'),
     email: Yup.string()
@@ -20,21 +18,23 @@ const Signup = () => {
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
-    user_type: Yup.string()
+    role: Yup.string()
       .required('Type is required')
   });
 
   // Initial form values
   const initialValues = {
-    username: '',
+    name: '',
     email: '',
     password: '',
-    user_type: '' // Default empty selection
+    role: '' // Default empty selection
   };
 
   // Handle form submission
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
+
+      
       const response = await fetch('/api/users', {
         method: 'POST',
         headers: {
@@ -43,7 +43,6 @@ const Signup = () => {
         body: JSON.stringify(values),
       });
 
-      // Check if the request was successful
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.details || 'Unknown error occurred');
@@ -59,7 +58,6 @@ const Signup = () => {
       resetForm();
     } catch (error) {
       console.error('Error creating user:', error);
-      // Show error message
       setMessage(`Error creating user: ${error.message}`);
       setIsError(true);
     } finally {
@@ -87,14 +85,14 @@ const Signup = () => {
           <Form className="row">
             {/* Username field */}
             <div className="col-md-6 mb-3">
-              <label htmlFor="username" className="form-label">Username</label>
+              <label htmlFor="name" className="form-label">Username</label>
               <Field
                 type="text"
-                name="username"
+                name="name"
                 className="form-control"
                 placeholder="Enter your username"
               />
-              <ErrorMessage name="username" component="div" className="text-danger" />
+              <ErrorMessage name="name" component="div" className="text-danger" />
             </div>
 
             {/* Email field */}
@@ -111,13 +109,13 @@ const Signup = () => {
 
             {/* User Type Dropdown */}
             <div className="col-md-6 mb-3">
-              <label htmlFor="user_type" className="form-label">Type</label>
-              <Field as="select" name="user_type" className="form-select">
+              <label htmlFor="role" className="form-label">Type</label>
+              <Field as="select" name="role" className="form-select">
                 <option value="">Select user type</option>
-                <option value="admin">Admin</option>
-                <option value="super_admin">Super Admin</option>
+                <option value="1">Admin</option>
+                <option value="2">Super Admin</option>
               </Field>
-              <ErrorMessage name="user_type" component="div" className="text-danger" />
+              <ErrorMessage name="role" component="div" className="text-danger" />
             </div>
 
             {/* Password field */}

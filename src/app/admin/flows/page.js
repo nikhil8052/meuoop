@@ -12,7 +12,7 @@ const UserList = () => {
     // Fetch users from the API
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/users');
+        const response = await fetch('/api/flows');
         if (!response.ok) throw new Error('Failed to fetch users');
         const data = await response.json();
         setUsers(data);
@@ -41,21 +41,15 @@ const UserList = () => {
   // Define columns for DataTable
   const columns = [
     { name: 'Name', selector: row => row.name, sortable: true },
-    { name: 'Email', selector: row => row.email, sortable: true },
-    {
-      name: 'Type',
-      selector: row => (
-        <span className={`badge ${row.type === '1' ? 'bg-success' : 'bg-warning'} text-white`}>
-          {row.type === '1' ? 'Super Admin' : 'Admin'}
-        </span>
-      ),
-      sortable: true,
-    },
+    { name: 'Type', selector: row => row.type, sortable: true },
+    { name: 'Total Images', selector: row => row.total_images, sortable: true },
+    { name: 'Description', selector: row => row.description, sortable: true },
+
     {
       name: 'Status',
       selector: row => (
-        <span className={`badge ${row.status === 1? 'bg-success' : 'bg-danger'}`}>
-          {row.status === 1 ? 'Active' : 'Blocked'}
+        <span className={`badge ${row.status === 'draft'? 'bg-warning' : 'bg-success'}`}>
+          {row.status === 'draft' ? 'Draft' : 'Published'}
         </span>
       ),
       sortable: true,
@@ -102,7 +96,7 @@ const UserList = () => {
 
   return (
     <div className="container mt-5">
-      <h3 className="mb-4">User List</h3>
+      <h3 className="mb-4">Flows</h3>
       <DataTable
         columns={columns}
         data={users}

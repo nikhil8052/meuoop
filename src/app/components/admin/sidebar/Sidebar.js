@@ -18,7 +18,22 @@ const Sidebar = () => {
                     <Link href="/admin/users/add">Add User</Link>
                 </li>
                 <li>
+                    <Link href="/admin/flows">All Flows </Link>
+                </li>
+                <li>
                     <Link href="/admin/uploads/ux-flow">Add UX Flow</Link>
+                </li>
+                <li>
+                    <Link href="/admin/elements">All elements </Link>
+                </li>
+                <li>
+                    <Link href="/admin/elements/add">Add Element</Link>
+                </li>
+                <li>
+                    <Link href="/admin/categories">All Categories </Link>
+                </li>
+                <li>
+                    <Link href="/admin/categories/add">Add Category</Link>
                 </li>
                 <li>
                     <Link href="/admin/settings">Settings</Link>

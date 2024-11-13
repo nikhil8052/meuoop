@@ -1,20 +1,39 @@
-// src/models/Image.js
-import mongoose from 'mongoose';
+const { DataTypes } = require('sequelize');
+const sequelize = require('../lib/db'); // Adjusted to use require instead of import
 
-const imageSchema = new mongoose.Schema({
-  flowId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Flow',
-    required: true,
+const Image = sequelize.define('Image', {
+  flow_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  path: {
-    type: String,
-    required: true,
+  url: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  uploaded_at: {
-    type: Date,
-    default: Date.now,
+  order_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true, // Allow null if images don't always have an associated order
+  },
+  status: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1, // Assuming 1 for active status
+  },
+  access: {
+    type: DataTypes.STRING,
+    allowNull: true, // Assuming it's optional; can be 'public' or 'restricted'
+  },
+  is_paid: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   },
 });
 
-export default mongoose.models.Image || mongoose.model('Image', imageSchema);
+module.exports = Image; // Adjusted to use module.exports

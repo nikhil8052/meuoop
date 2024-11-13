@@ -212,8 +212,10 @@
     min-height: 100vh;
 }
 .second_step_left_div{
-    border-right: 1px solid #E0E0E0;
     padding: 20px ;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
 }
 
 .app_name_container {
@@ -243,7 +245,26 @@
 }
 .mobile-web-view{
     display: flex ;
-    gap: 10px ;
+    padding: 3px;
+    display: flex;
+    border: 1px solid #BCBCBC;
+    background-color: #F3F0F9;
+    border-radius: 20px;
+    justify-content: space-around;
+
+}
+
+.mobile-web-view div {
+    padding: 3px;
+    padding-left: 10px ;
+    padding-right: 10px ;
+    border-radius: 12px;
+}
+
+.mobile-web-view-active{
+    background: #6C00FF;
+    color: white;
+
 }
 
 
@@ -276,13 +297,30 @@
 .second_step_right_div{
   flex: 1 1 20%; /* Takes up 20% of the width */
   background-color: #f0f0f0; /* Optional: background for clarity */
+
+
 }
 
+.second_step_right_div{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .second_step_mid_div {
   flex: 1 1 60%; /* Takes up 60% of the width */
+  padding: 20px ;
   background-color: #e0e0e0; /* Optional: background for clarity */
 }
 
 
+.uploaded-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+.uploaded-images img {
+    height: 320px  ;
+    width: 150px ;
+    margin: 10px ;
+    border-radius: 10px ;
 
+}
 /* END UX FLOW DESIGN */

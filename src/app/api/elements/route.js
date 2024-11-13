@@ -4,7 +4,7 @@ const { connection } = require('../lib/db'); // Adjust path as needed
 
 export async function GET(req) {
 
-  const query = `select * from categories`;
+  const query = `select * from elements`;
   return new Promise((resolve, reject )=>{
     connection.query(query,[],(err,results)=>{
       if( err ){
@@ -46,10 +46,10 @@ export async function POST(req) {
   }
 
   // Insert values into `flows`, with `id` auto-incremented by the database
-  const query = `INSERT INTO categories (name, status) VALUES (?, ?)`;
+  const query = `INSERT INTO elements (name) VALUES (?)`;
 
   return new Promise((resolve, reject) => {
-    connection.query(query, [ name, status ], (err, results) => {
+    connection.query(query, [ name], (err, results) => {
       if (err) {
         console.error('Error inserting flow:', err);
         return reject(
