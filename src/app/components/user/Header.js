@@ -7,7 +7,7 @@ import styles from './Header.module.css';
 const Header = () => {
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>Meuooop</div>
+            <div className={styles.logo}>Meuoop</div>
             <div className={styles.searchBar}>
                 <i className="fas fa-search"></i>
                 <input placeholder="Search app screen" type="text" />

@@ -4,24 +4,32 @@ import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import Select from "react-select";
+
 
 export default function Page() {
   const [images, setImages] = useState([]);
   const [isFirstStep, setIsFirstStep] = useState(true);
   const [appName, setAppName] = useState(""); // State to store the app name
   const [description, setDescription] = useState(""); // State to store the description
-  const [categories,setCategories] = useState([]); // State to store the description
-  const [elements,setElements] = useState([]); // State to store the description
-
-
+  const [categories, setCategories] = useState([]); // State to store the description
+  const [elements, setElements] = useState([]); // State to store the description
+  const [flowId, setFlowId] = useState(null);
+  const [activeScreenType, setActiveScreenType] = useState("mobile"); // Initial screen type
+  const [selectedElements, setSelectedElements] = useState([]);
 
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get("/api/categories");
-        setCategories(response.data); // Assuming response.data is an array of categories
-        console.log(categories  )
+        // Map the categories to a format suitable for react-select
+        const formattedCategories = response.data.map((category) => ({
+          value: category.id,
+          label: category.name,
+        }));
+        console.log(formattedCategories, " thease are the formatted cates ")
+        setCategories(formattedCategories);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -32,7 +40,7 @@ export default function Page() {
     const fetchElements = async () => {
       try {
         const response = await axios.get("/api/elements");
-        console.log("Elements ", response.data )
+        console.log("Elements ", response.data)
         setElements(response.data); // Assuming response.data is an array of categories
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -47,6 +55,83 @@ export default function Page() {
     appName: Yup.string().required("App Name is required"),
     description: Yup.string().required("Description is required"),
   });
+
+  const updateFlow = async (screenType) => {
+
+    try {
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const flow_id = urlParams.get("flow_id");
+      if (flow_id) {
+        setFlowId(flow_id);
+      }
+
+      const response = await fetch("/api/flows", {
+        method: "PUT", // Use PUT or POST depending on your API design
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          flowId: flow_id, // Replace with the actual flow ID
+          screenType,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Flow updated successfully:", data);
+        setActiveScreenType(screenType); // Update active state
+      } else {
+        console.error("Failed to update flow");
+      }
+    } catch (error) {
+      console.error("Error updating flow:", error);
+    }
+  };
+
+
+  const handleElementClick = async (elementId) => {
+    try {
+      // Toggle the element in the selectedElements array
+      setSelectedElements((prevSelected) =>
+        prevSelected.includes(elementId)
+          ? prevSelected.filter((id) => id !== elementId) // Remove if already selected
+          : [...prevSelected, elementId] // Add if not selected
+      );
+
+      // Extract flow ID from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const flowId = urlParams.get("flow_id");
+
+      if (!flowId) {
+        console.error("Flow ID not found in URL");
+        return;
+      }
+
+      // Send a request to update the database
+      const response = await fetch("/api/flows/categories", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          flowId,
+          elementId,
+          isActive: !selectedElements.includes(elementId), // Pass the new active state
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Flow category updated successfully:", data);
+      } else {
+        console.error("Failed to update flow category");
+      }
+    } catch (error) {
+      console.error("Error updating flow category:", error);
+    }
+  };
+
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -89,6 +174,7 @@ export default function Page() {
 
   const handleNextStep = async (values, { setSubmitting }) => {
     try {
+      console.log(selectedCategory, "Before sending the data....")
       // Save the flow information before going to the next step
       const response = await fetch("/api/flows", {
         method: "POST",
@@ -98,15 +184,16 @@ export default function Page() {
         body: JSON.stringify({
           name: values.appName,
           description: values.description,
+          categories: selectedCategory,
           type: "ux_flow",
           status: "draft",
         }),
       });
 
 
-      if( response.ok ){
+      if (response.ok) {
         const data = await response.json();
-        const flowId = data.flow_id ;
+        const flowId = data.flow_id;
         if (flowId) {
           const currentUrl = new URL(window.location.href);
           currentUrl.searchParams.set("flow_id", flowId); // Add or update the flow_id query parameter
@@ -132,6 +219,15 @@ export default function Page() {
   const handlePreviousStep = () => {
     setIsFirstStep(true);
   };
+
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryChange = (selectedOption) => {
+    setSelectedCategory(selectedOption);
+    console.log("Selected category:", selectedOption);
+  };
+
 
   return (
     <>
@@ -167,7 +263,7 @@ export default function Page() {
                 <ErrorMessage name="description" component="div" className="error-message" style={{ color: "red" }} />
               </div>
 
-              <div className="search-group mb-2">
+              {/* <div className="search-group mb-2">
                 <div className="search-bar">
                   <i className="fas fa-search"></i>
                   <input type="text" placeholder="Search apps or flows" />
@@ -179,6 +275,37 @@ export default function Page() {
                     </div>
                   ))}
                 </div>
+              </div> */}
+              <div className="mb-2">
+                <Select
+                  options={categories}
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                  placeholder="Select a category"
+                  isSearchable
+                  isMulti
+                  className="category-select"
+                  classNamePrefix="select"
+                  menuPortalTarget={document.body} // Attach the dropdown to the body
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }), // Ensure it's above other elements
+                    menu: (base) => ({ ...base, zIndex: 9999 }), // Additional z-index for safety
+                    container: (base) => ({
+                      ...base,
+                      width: "100%", // Take full width of the parent
+                      minWidth: "300px", // Ensure a minimum width of 300px
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      width: "100%", // Match the container's width
+                      minWidth: "300px", // Ensure a minimum width of 300px
+                    }),
+                  }}
+                />
+
+              </div>
+              <div>
+
               </div>
               <button type="submit" className="next-button" disabled={isSubmitting}>
                 Save & Next
@@ -195,8 +322,18 @@ export default function Page() {
               <i className="fas fa-edit edit-icon"></i>
             </div>
             <div className="mobile-web-view">
-              <div className="mobile-web-view-active"> Mobile</div>
-              <div>Web</div>
+              <div
+                className={`${activeScreenType === "mobile" ? "mobile-web-view-active" : ""}`}
+                onClick={() => updateFlow("mobile")}
+              >
+                Mobile
+              </div>
+              <div
+                className={`${activeScreenType === "desktop" ? "mobile-web-view-active" : ""}`}
+                onClick={() => updateFlow("desktop")}
+              >
+                Web
+              </div>
             </div>
           </div>
           <div className="second_step_mid_div">
@@ -215,17 +352,23 @@ export default function Page() {
           <div className="second_step_right_div p-2 pt-4">
             <div className="menu">
 
-            {elements.map((category, index) => (
-                     <div className={`menu-item ${index === 0 ? "active" : "inactive"}`} key={index} >
-                      <span>{category.name}</span>
-                    </div>
-            ))}
+              {elements.map((element, index) => (
+                <div
+                  key={index}
+                  className={`menu-item ${selectedElements.includes(element.id) ? "active" : "inactive"
+                    }`}
+                  onClick={() => handleElementClick(element.id)}
+                >
+                  <span>{element.name}</span>
+                </div>
+              ))}
+
 
               {/* <div className="menu-item active">
                 <span>Toggle</span>
                 <i className="fas fa-check"></i>
               </div> */}
-              
+
             </div>
           </div>
         </div>

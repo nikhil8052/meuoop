@@ -1,4 +1,6 @@
-.admin-layout-main-container {}
+.admin-layout-main-container {
+    overflow: scroll;
+}
 
 .admin-content {}
 
@@ -162,8 +164,9 @@
 
 .dashboard-main-container {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     margin: 0;
+    flex-wrap: wrap;
 }
 
 .dashboard_stats_div {
@@ -259,6 +262,8 @@
     padding-left: 10px ;
     padding-right: 10px ;
     border-radius: 12px;
+    cursor: pointer;
+    
 }
 
 .mobile-web-view-active{
@@ -323,4 +328,6 @@
     border-radius: 10px ;
 
 }
+
+
 /* END UX FLOW DESIGN */

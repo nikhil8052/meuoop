@@ -3,6 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
+    margin-left: 60px;
+    background-color: #13151A !important;
 }
 .logo {
     font-size: 24px;

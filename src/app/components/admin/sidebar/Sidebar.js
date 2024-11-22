@@ -11,33 +11,50 @@ const Sidebar = () => {
                 <li>
                     <Link href="/admin/dashboard">Dashboard</Link>
                 </li>
+                
+             
+               
+
+                
+                <hr/>
+                <li>
+                    <Link href="/admin/flows"> Flows </Link>
+                </li>
                 <li>
                     <Link href="/admin/users">Users</Link>
                 </li>
                 <li>
-                    <Link href="/admin/users/add">Add User</Link>
+                    <Link href="/admin/elements"> Elements </Link>
                 </li>
                 <li>
-                    <Link href="/admin/flows">All Flows </Link>
+                    <Link href="/admin/categories"> Categories </Link>
                 </li>
+                <li>
+                    <Link href="/admin/pages"> Pages </Link>
+                </li>
+                <hr/>
                 <li>
                     <Link href="/admin/uploads/ux-flow">Add UX Flow</Link>
                 </li>
                 <li>
-                    <Link href="/admin/elements">All elements </Link>
+                    <Link href="/admin/users/add">Add User</Link>
                 </li>
+                
                 <li>
                     <Link href="/admin/elements/add">Add Element</Link>
                 </li>
-                <li>
-                    <Link href="/admin/categories">All Categories </Link>
-                </li>
+
                 <li>
                     <Link href="/admin/categories/add">Add Category</Link>
                 </li>
+
                 <li>
-                    <Link href="/admin/settings">Settings</Link>
+                    <Link href="/admin/pages/add">Add Page</Link>
                 </li>
+                {/* <li>
+                    <Link href="/admin/settings">Settings</Link>
+                </li> */}
+                
             </ul>
         </div>
     );

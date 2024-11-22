@@ -1,0 +1,12 @@
+.main-header{
+    height: 100px;
+    background: #13151A;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 11px;
+}
+
+.website-logo{
+    font-size: 30px;
+}
