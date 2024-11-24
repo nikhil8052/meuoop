@@ -37,6 +37,9 @@ const Sidebar = () => {
                     <Link href="/admin/uploads/ux-flow">Add UX Flow</Link>
                 </li>
                 <li>
+                    <Link href="/admin/uploads/landing-pages">Add Landing Page</Link>
+                </li>
+                <li>
                     <Link href="/admin/users/add">Add User</Link>
                 </li>
                 
