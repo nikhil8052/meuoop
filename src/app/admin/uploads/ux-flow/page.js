@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Select from "react-select";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 export default function Page() {
@@ -179,18 +180,21 @@ export default function Page() {
     try {
       console.log(selectedCategory, "Before sending the data....")
       // Save the flow information before going to the next step
+      var DataObject={
+        name: values.appName,
+        description: values.description,
+        categories: selectedCategory,
+        type: "ux_flow",
+        status: "draft",
+      }
+
+      console.log( JSON.stringify(DataObject) , " JSON Object before send ")
       const response = await fetch("/api/flows", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: values.appName,
-          description: values.description,
-          categories: selectedCategory,
-          type: "ux_flow",
-          status: "draft",
-        }),
+        body: JSON.stringify(DataObject),
       });
 
 
@@ -243,7 +247,7 @@ export default function Page() {
           <button className="back-button" onClick={handlePreviousStep}>
             Back
           </button>
-          <button className="preview">Preview</button>
+          <button className="preview">Save Draft </button>
           <button className="publish">Publish</button>
         </div>
       </div>
@@ -266,19 +270,7 @@ export default function Page() {
                 <ErrorMessage name="description" component="div" className="error-message" style={{ color: "red" }} />
               </div>
 
-              {/* <div className="search-group mb-2">
-                <div className="search-bar">
-                  <i className="fas fa-search"></i>
-                  <input type="text" placeholder="Search apps or flows" />
-                </div>
-                <div className="categories">
-                {categories.map((category, index) => (
-                    <div key={index} className={`category ${index === 0 ? "active" : "inactive"}`}>
-                      {category.name}
-                    </div>
-                  ))}
-                </div>
-              </div> */}
+              
               <div className="mb-2">
                 <Select
                   options={categories}
@@ -367,10 +359,7 @@ export default function Page() {
               ))}
 
 
-              {/* <div className="menu-item active">
-                <span>Toggle</span>
-                <i className="fas fa-check"></i>
-              </div> */}
+            
 
             </div>
           </div>

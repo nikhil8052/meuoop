@@ -1,35 +1,23 @@
 // Import necessary modules
 const { connection } = require('../lib/db'); // Adjust path as needed
+import prisma from '@/lib/prisma';
 
 
 export async function GET(req) {
 
-  const query = `select * from categories`;
-  return new Promise((resolve, reject )=>{
-    connection.query(query,[],(err,results)=>{
-      if( err ){
 
-      }
-
-      resolve(
-        new Response(JSON.stringify(results), {
-          status:201, 
-          headers:{
-            'Content-Type':'application/json'
-          }
-        })
-      )
-    })
-
-  })
-
+  try {
+    const flows = await prisma.categories.findMany();
+    return new Response(JSON.stringify(flows), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Error fetching flows' }), { status: 500 });
+  }
 
 }
 
 // POST request to create a new flow
 export async function POST(req) {
-
-
   const { name, status } = await req.json();
 
   // Input validation
@@ -45,40 +33,40 @@ export async function POST(req) {
     );
   }
 
-  // Insert values into `flows`, with `id` auto-incremented by the database
-  const query = `INSERT INTO categories (name, status) VALUES (?, ?)`;
-
-  return new Promise((resolve, reject) => {
-    connection.query(query, [ name, status ], (err, results) => {
-      if (err) {
-        console.error('Error inserting flow:', err);
-        return reject(
-          new Response(
-            JSON.stringify({
-              error: 'Error creating flow',
-              details: err.message,
-            }),
-            {
-              status: 500,
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          )
-        );
-      }
-
-      resolve(
-        new Response(
-          JSON.stringify({ message: 'Flow successfully created', flow_id: results.insertId }),
-          {
-            status: 201,
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        )
-      );
+  try {
+    // Insert the new category into the `categories` table
+    const newCategory = await prisma.categories.create({
+      data: {
+        name,
+        status,
+      },
     });
-  });
+
+    return new Response(
+      JSON.stringify({
+        message: 'Category successfully created',
+        category_id: newCategory.id, // Prisma returns the inserted `id`
+      }),
+      {
+        status: 201,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  } catch (error) {
+    console.error('Error creating category:', error);
+    return new Response(
+      JSON.stringify({
+        error: 'Error creating category',
+        details: error.message,
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
 }

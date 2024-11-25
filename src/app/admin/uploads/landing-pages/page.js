@@ -1,381 +1,252 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useState, useRef } from "react";
+import { Switch } from "@mui/material";
 import Select from "react-select";
-
+import Paper from "@mui/material/Paper";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function Page() {
-  const [images, setImages] = useState([]);
-  const [isFirstStep, setIsFirstStep] = useState(true);
-  const [appName, setAppName] = useState(""); // State to store the app name
-  const [description, setDescription] = useState(""); // State to store the description
-  const [categories, setCategories] = useState([]); // State to store the description
-  const [elements, setElements] = useState([]); // State to store the description
-  const [flowId, setFlowId] = useState(null);
-  const [activeScreenType, setActiveScreenType] = useState("mobile"); // Initial screen type
-  const [selectedElements, setSelectedElements] = useState([]);
+
+  const desktopFileInputRef = useRef(null);
+  const mobileFileInputRef = useRef(null);
+
+  const [mobileLandingPage, setMobileLandingPage] = useState(false);
+  const [desktopLandingPage, setDesktopLandingPage] = useState(false);
+  const [selectedPages, setSelectedPages] = useState([]);
+  const [selectedThemes, setSelectedThemes] = useState([]);
 
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get("/api/categories");
-        // Map the categories to a format suitable for react-select
-        const formattedCategories = response.data.map((category) => ({
-          value: category.id,
-          label: category.name,
-        }));
-        console.log(formattedCategories, " thease are the formatted cates ")
-        setCategories(formattedCategories);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
+  const allPageTypes = [
+    { value: "option1", label: "Landing Page " },
+    { value: "option2", label: "About Us" },
+    { value: "option3", label: "Contact Us" },
+    { value: "option4", label: "Terms and Conditions" },
+  ];
 
-    fetchCategories();
+  const allThemes = [
+    { value: "option1", label: "Modern" },
+    { value: "option2", label: "Glassmorphism" },
+    { value: "option3", label: "AI" },
+    { value: "option4", label: "Java" },
+  ];
 
-    const fetchElements = async () => {
-      try {
-        const response = await axios.get("/api/elements");
-        console.log("Elements ", response.data)
-        setElements(response.data); // Assuming response.data is an array of categories
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
 
-    fetchElements();
+  const handleFileChange = (event, type) => {
+    const file = event.target.files[0]; // Get the selected file
+    if (type === "desktop") {
+      setDesktopFile(file);
+    } else if (type === "mobile") {
+      setMobileFile(file);
+    }
+  };
 
-  }, []);
 
+  const handleClick = (type) => {
+    if (type === "desktop" && desktopFileInputRef.current) {
+      desktopFileInputRef.current.click();
+    } else if (type === "mobile" && mobileFileInputRef.current) {
+      mobileFileInputRef.current.click();
+    }
+  };
+
+  // Yup validation schema
   const validationSchema = Yup.object({
-    appName: Yup.string().required("App Name is required"),
-    description: Yup.string().required("Description is required"),
+    name: Yup.string()
+      .required("Name is required")
+      .min(3, "Name must be at least 3 characters"),
+    selectedThemes: Yup.array().min(1, "At least one theme must be selected"),
+    selectedPages: Yup.array().min(1, "At least one page type must be selected"),
   });
 
-  const updateFlow = async (screenType) => {
 
-    try {
+  // Formik for handling form state
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      selectedThemes: [],
+      selectedPages: [],
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      // Collect all data, including switches
+      const formData = {
+        ...values,
+        mobileLandingPage,
+        desktopLandingPage,
+      };
+      console.log("Form Data:", formData);
+    },
+  });
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const flow_id = urlParams.get("flow_id");
-      if (flow_id) {
-        setFlowId(flow_id);
-      }
-
-      const response = await fetch("/api/flows", {
-        method: "PUT", // Use PUT or POST depending on your API design
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          flowId: flow_id, // Replace with the actual flow ID
-          screenType,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Flow updated successfully:", data);
-        setActiveScreenType(screenType); // Update active state
-      } else {
-        console.error("Failed to update flow");
-      }
-    } catch (error) {
-      console.error("Error updating flow:", error);
-    }
+  const handleTheme = (selected) => {
+    setSelectedThemes(selected);
   };
 
-
-  const handleElementClick = async (elementId) => {
-    try {
-      // Toggle the element in the selectedElements array
-      setSelectedElements((prevSelected) =>
-        prevSelected.includes(elementId)
-          ? prevSelected.filter((id) => id !== elementId) // Remove if already selected
-          : [...prevSelected, elementId] // Add if not selected
-      );
-
-      // Extract flow ID from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const flowId = urlParams.get("flow_id");
-
-      if (!flowId) {
-        console.error("Flow ID not found in URL");
-        return;
-      }
-
-      // Send a request to update the database
-       var type='element';
-      const response = await fetch("http://localhost:3000/api/flows/categories", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          flowId,
-          elementId,
-          type,
-          isActive: !selectedElements.includes(elementId), // Pass the new active state
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Flow category updated successfully:", data);
-      } else {
-        console.error("Failed to update flow category");
-      }
-    } catch (error) {
-
-      console.error("Error updating flow category:", error);
-    }
+  const handlePageType = (selected) => {
+    setSelectedPages(selected);
   };
 
-
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-
-    if (!file) {
-      console.error("No file selected");
-      return;
-    }
-    const urlParams = new URLSearchParams(window.location.search);
-    const flowId = urlParams.get("flow_id");
-
-    const formData = new FormData();
-    formData.set("image", file);
-    if (flowId) {
-      // Append flow_id to formData if it exists
-      formData.set("flow_id", flowId);
-      formData.set("status", 1);
-      formData.set("order_id", 1);
-
-    }
-
-
-    try {
-      const response = await fetch("http://localhost:3000/api/images", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-
-      if (data.url) {
-        setImages([...images, data.url]);
-      }
-
-      console.log("Image uploaded successfully:", data);
-    } catch (error) {
-      console.error("Error uploading image:", error.message);
-      alert("Upload failed: " + error.message);
-    }
+  const handleMobileSwitch = (event) => {
+    setMobileLandingPage(event.target.checked)
   };
 
-  const handleNextStep = async (values, { setSubmitting }) => {
-    try {
-      console.log(selectedCategory, "Before sending the data....")
-      // Save the flow information before going to the next step
-      const response = await fetch("/api/flows", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: values.appName,
-          description: values.description,
-          categories: selectedCategory,
-          type: "ux_flow",
-          status: "draft",
-        }),
-      });
-
-
-      if (response.ok) {
-        const data = await response.json();
-        const flowId = data.flow_id;
-        if (flowId) {
-          const currentUrl = new URL(window.location.href);
-          currentUrl.searchParams.set("flow_id", flowId); // Add or update the flow_id query parameter
-          window.history.pushState({}, "", currentUrl); // Update the URL without reloading
-        } else {
-          console.error("Flow ID is missing from the response");
-        }
-      }
-
-
-
-      setAppName(values.appName); // Store the app name in state
-      setDescription(values.description); // Store the description in state
-      setIsFirstStep(false); // Move to the second step
-    } catch (error) {
-      console.error("Error saving flow:", error);
-      alert("Error saving flow: " + error.response.data.error);
-    } finally {
-      setSubmitting(false);
-    }
+  const handleDesktopSwitch = (event) => {
+    setDesktopLandingPage(event.target.checked)
   };
-
-  const handlePreviousStep = () => {
-    setIsFirstStep(true);
-  };
-
-
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption);
-    console.log("Selected category:", selectedOption);
-  };
-
 
   return (
     <>
+
       <div className="header">
         <div className="logo">
-          Meuooop
-          <span>Upload UX Flow</span>
+          <p>Meuooop </p>
         </div>
         <div className="buttons">
-          <button className="back-button" onClick={handlePreviousStep}>
-            Back
-          </button>
-          <button className="preview">Preview</button>
-          <button className="publish">Publish</button>
+
+          <button className="preview">Save Draft </button>
+          <button className="publish" onClick={formik.handleSubmit} >Publish</button>
         </div>
       </div>
+      <div class="main d-flex justify-content-between ">
+        <div class="sidebar p-4">
+          <div class="landing-upload-icon">
+            <Image height={50} width={90} src="/images/upload_icon.svg" alt="Upload Icon" />
 
-      {isFirstStep ? (
-        <Formik
-          initialValues={{ appName: appName || "", description: description || "" }}
-          validationSchema={validationSchema}
-          onSubmit={handleNextStep}
-        >
-          {({ isSubmitting }) => (
-            <Form className="first_step step upload_flow_container">
-              <div className="upload-icon">
-                <Image height={100} width={100} src="/images/upload_icon.svg" alt="Upload Icon" />
-              </div>
-              <div className="input-group mb-2">
-                <Field type="text" name="appName" placeholder="App Name" />
-                <ErrorMessage name="appName" component="div" className="error-message" style={{ color: "red" }} />
-                <Field type="text" name="description" placeholder="Description" />
-                <ErrorMessage name="description" component="div" className="error-message" style={{ color: "red" }} />
-              </div>
+          </div>
+          <div class="form-group m-0 mb-3">
+            <label for="name">
+              Name
+            </label>
+            <input id="name" type="text" />
+            {formik.touched.name && formik.errors.name && (
+              <div className="error text-danger">{formik.errors.name}</div>
+            )}
+          </div>
 
-              {/* <div className="search-group mb-2">
-                <div className="search-bar">
-                  <i className="fas fa-search"></i>
-                  <input type="text" placeholder="Search apps or flows" />
-                </div>
-                <div className="categories">
-                {categories.map((category, index) => (
-                    <div key={index} className={`category ${index === 0 ? "active" : "inactive"}`}>
-                      {category.name}
-                    </div>
-                  ))}
-                </div>
-              </div> */}
-              <div className="mb-2">
-                <Select
-                  options={categories}
-                  value={selectedCategory}
-                  onChange={handleCategoryChange}
-                  placeholder="Select a category"
-                  isSearchable
-                  isMulti
-                  className="category-select"
-                  classNamePrefix="select"
-                  menuPortalTarget={document.body} // Attach the dropdown to the body
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }), // Ensure it's above other elements
-                    menu: (base) => ({ ...base, zIndex: 9999 }), // Additional z-index for safety
-                    container: (base) => ({
-                      ...base,
-                      width: "100%", // Take full width of the parent
-                      minWidth: "300px", // Ensure a minimum width of 300px
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      width: "100%", // Match the container's width
-                      minWidth: "300px", // Ensure a minimum width of 300px
-                    }),
-                  }}
+          {/* Swithces  */}
+
+          <div className="swithes mb-3 paper">
+            <div className="switch-div mobile-switch">
+              <label> Mobile </label>
+              <Switch checked={mobileLandingPage} onChange={handleMobileSwitch} />
+            </div>
+            <div className="switch-div desktop-switch">
+              <label> Desktop </label>
+              <Switch checked={desktopLandingPage} onChange={handleDesktopSwitch} />
+            </div>
+          </div>
+          {/* End Switches  */}
+
+
+          {/* Theme  Type Start  */}
+          <div className="Page-tyeps mb-3">
+            <label for="category mb-3">
+              Select Themes
+            </label>
+            <Select
+              id="themes"
+              isMulti
+              options={allThemes}
+              value={selectedThemes}
+              onChange={(selected) => {
+                formik.setFieldValue("selectedThemes", selected);
+                setSelectedThemes(selected);
+              }}
+              placeholder="Select Theme"
+
+
+            />
+            {formik.touched.selectedThemes && formik.errors.selectedThemes && (
+              <div className="error text-danger">{formik.errors.selectedThemes}</div>
+            )}
+          </div>
+          {/* Themem Type End  */}
+
+
+        </div>
+        <div class="landing-page-right-section w-100">
+          <Paper
+            elevation={0} // Controls the shadow depth
+            style={{
+              padding: "20px",
+              height: "100%",
+              textAlign: "center",
+              backgroundColor: "#f5f5f5", // Optional custom color
+            }}
+          >
+            <Paper>
+              <div className="landing-page-upload">
+
+                <input
+                  type="file"
+                  ref={desktopFileInputRef}
+                  onChange={(e) => handleFileChange(e, "desktop")}
+                  style={{ display: "none" }}
                 />
 
-              </div>
-              <div>
+                {/* Hidden file input for mobile */}
+                <input
+                  type="file"
+                  ref={mobileFileInputRef}
+                  onChange={(e) => handleFileChange(e, "mobile")}
+                  style={{ display: "none" }}
+                />
 
-              </div>
-              <button type="submit" className="next-button" disabled={isSubmitting}>
-                Save & Next
-              </button>
-            </Form>
-          )}
-        </Formik>
-      ) : (
-        <div className="second_step step second_step_main_div">
-          <div className="second_step_left_div">
-            <div className="app_name_container mb-4">
-              <div className="app-icon"></div>
-              <div className="app_name">{appName}</div> {/* Display the app name here */}
-              <i className="fas fa-edit edit-icon"></i>
-            </div>
-            <div className="mobile-web-view">
-              <div
-                className={`${activeScreenType === "mobile" ? "mobile-web-view-active" : ""}`}
-                onClick={() => updateFlow("mobile")}
-              >
-                Mobile
-              </div>
-              <div
-                className={`${activeScreenType === "desktop" ? "mobile-web-view-active" : ""}`}
-                onClick={() => updateFlow("desktop")}
-              >
-                Web
-              </div>
-            </div>
-          </div>
-          <div className="second_step_mid_div">
-            <div className="add_new_image">
-              <input type="file" onChange={handleImageUpload} />
-              <div className="uploaded-images">
-                {images.map((img, index) => (
-                  <img key={index} src={img} alt="Uploaded" width={100} height={100} />
-                ))}
-              </div>
-              {/* <button onClick={() => document.querySelector("input[type='file']").click()}>
-                Add Another Image
-              </button> */}
-            </div>
-          </div>
-          <div className="second_step_right_div p-2 pt-4">
-            <div className="menu">
+                <div className="d-flex ">
+                  <div className="upload_icon_desktop me-3"           onClick={() => handleClick("desktop")}
+                   >
+                    <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
+                  </div>
 
-              {elements.map((element, index) => (
-                <div
-                  key={index}
-                  className={`menu-item ${selectedElements.includes(element.id) ? "active" : "inactive"
-                    }`}
-                  onClick={() => handleElementClick(element.id)}
-                >
-                  <span>{element.name}</span>
+                  <div className="upload_icon_mobile"           onClick={() => handleClick("mobile")}
+                   >
+                    <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
+                  </div>
                 </div>
-              ))}
+                {/* Page Type Start  */}
+
+                <div className="Page-tyeps mb-3">
+
+                  <Select
+                    id="page_types"
+                    isMulti
+                    options={allPageTypes}
+                    value={selectedPages}
+                    onChange={(selected) => {
+                      formik.setFieldValue("selectedPages", selected);
+                      setSelectedPages(selected);
+                    }}
+                    placeholder="Page Type  "
 
 
-              {/* <div className="menu-item active">
-                <span>Toggle</span>
-                <i className="fas fa-check"></i>
-              </div> */}
+                  />
+                  {formik.touched.selectedPages && formik.errors.selectedPages && (
+                    <div className="error text-danger ">{formik.errors.selectedPages}</div>
+                  )}
 
-            </div>
-          </div>
+                  <div className="mt-3">
+                    <div className="elements">
+                      <div className="element-div"> Element </div>
+                      <div className="element-div"> Element </div>
+                      <div className="element-div"> Element </div>
+                    </div>
+                  </div>
+
+                </div>
+                {/* Page Type End  */}
+
+                {/* Delete Icon DIV  */}
+                <div className="delete-icon">
+                  <Image height={23} width={23} src="/images/delete.svg" alt="Upload Icon" />
+                </div>
+              </div>
+            </Paper>
+
+          </Paper>
         </div>
-      )}
+      </div>
     </>
-  );
+  )
 }

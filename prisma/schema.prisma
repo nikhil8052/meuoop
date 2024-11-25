@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  email     String    @unique(map: "email") @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  type      String?   @db.VarChar(255)
+  status    Int?      @default(1)
+  createdAt DateTime  @default(now()) @db.DateTime(0)
+  updatedAt DateTime? @db.DateTime(0)
+}
+
+model categories {
+  id              Int               @id @default(autoincrement())
+  name            String            @db.VarChar(255)
+  status          categories_status
+  created_at      DateTime          @default(now()) @db.Timestamp(0)
+  updated_at      DateTime          @default(now()) @db.Timestamp(0)
+  flow_categories flow_categories[]
+}
+
+model elements {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  status     String?  @default("active") @db.VarChar(50)
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @db.Timestamp(0)
+  created_by Int?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model flow_categories {
+  id          Int        @id @default(autoincrement())
+  flow_id     Int
+  type        String?    @db.VarChar(10)
+  category_id Int
+  status      Int?       @default(1) @db.TinyInt
+  created_at  DateTime   @default(now()) @db.Timestamp(0)
+  updated_at  DateTime   @default(now()) @db.Timestamp(0)
+  categories  categories @relation(fields: [category_id], references: [id], onDelete: Cascade, map: "fk_category_id")
+  flows       flows      @relation(fields: [flow_id], references: [id], onDelete: Cascade, map: "fk_flow_id")
+
+  @@index([category_id], map: "fk_category_id")
+  @@index([flow_id], map: "fk_flow_id")
+}
+
+model flow_types {
+  id          Int               @id @default(autoincrement())
+  status      flow_types_status
+  createdAt   DateTime          @db.DateTime(0)
+  updatedAt   DateTime          @db.DateTime(0)
+  flowType    String            @db.VarChar(255)
+  name        String            @db.VarChar(255)
+  description String            @db.VarChar(255)
+}
+
+model flows {
+  id              Int                @id @default(autoincrement())
+  type            String             @db.VarChar(100)
+  total_images    Int?               @default(0)
+  name            String             @db.VarChar(100)
+  description     String?            @db.Text
+  screen_type     flows_screen_type? @default(mobile)
+  status          String?            @default("active") @db.VarChar(50)
+  created_at      DateTime           @default(now()) @db.Timestamp(0)
+  updated_at      DateTime           @default(now()) @db.Timestamp(0)
+  flow_categories flow_categories[]
+}
+
+model image_elements {
+  id        Int                   @id @default(autoincrement())
+  imageId   Int
+  elementId Int
+  status    image_elements_status
+  createdAt DateTime              @db.DateTime(0)
+  updatedAt DateTime              @db.DateTime(0)
+}
+
+model images {
+  id         Int            @id @default(autoincrement())
+  flow_id    Int
+  url        String         @db.VarChar(255)
+  order_id   Int?
+  status     String?        @default("active") @db.VarChar(50)
+  access     images_access? @default(public)
+  is_paid    Boolean?       @default(false)
+  created_at DateTime       @default(now()) @db.Timestamp(0)
+  updated_at DateTime       @default(now()) @db.Timestamp(0)
+
+  @@index([flow_id], map: "flow_id")
+}
+
+model pages {
+  id         Int          @id @default(autoincrement())
+  name       String       @db.VarChar(255)
+  status     pages_status @default(active)
+  created_at DateTime     @default(now()) @db.Timestamp(0)
+  updated_at DateTime     @default(now()) @db.Timestamp(0)
+  created_by Int?
+}
+
+enum flow_types_status {
+  true
+  false
+}
+
+enum pages_status {
+  active
+  inactive
+}
+
+enum categories_status {
+  active
+  inactive
+}
+
+enum image_elements_status {
+  true
+  false
+}
+
+enum flows_screen_type {
+  mobile
+  desktop
+  other
+}
+
+enum images_access {
+  public
+  private
+}
