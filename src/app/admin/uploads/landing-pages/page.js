@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Switch } from "@mui/material";
 import Select from "react-select";
 import Paper from "@mui/material/Paper";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 export default function Page() {
 
@@ -15,23 +16,70 @@ export default function Page() {
   const [mobileLandingPage, setMobileLandingPage] = useState(false);
   const [desktopLandingPage, setDesktopLandingPage] = useState(false);
   const [selectedPages, setSelectedPages] = useState([]);
+  const [selectedElements, setSelectedElements] = useState([]);
   const [selectedThemes, setSelectedThemes] = useState([]);
+  const [allThemes, setAllThemes] = useState([]);
+  const [allPageTypes, setAllPageTypes] = useState([]);
+  const [allElements, setAllElements] = useState([]);
 
 
-  const allPageTypes = [
-    { value: "option1", label: "Landing Page " },
-    { value: "option2", label: "About Us" },
-    { value: "option3", label: "Contact Us" },
-    { value: "option4", label: "Terms and Conditions" },
-  ];
 
-  const allThemes = [
-    { value: "option1", label: "Modern" },
-    { value: "option2", label: "Glassmorphism" },
-    { value: "option3", label: "AI" },
-    { value: "option4", label: "Java" },
-  ];
 
+
+
+
+  useEffect(() => {
+
+    const fetchThemes = async () => {
+      try {
+        const response = await axios.get("/api/themes");
+        // Map the categories to a format suitable for react-select
+        const formattedCategories = response.data.map((category) => ({
+          value: category.id,
+          label: category.name,
+        }));
+        setAllThemes(formattedCategories);
+
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    const fetchPageTypes = async () => {
+      try {
+        const response = await axios.get("/api/pages");
+        // Map the categories to a format suitable for react-select
+        const formattedCategories = response.data.map((category) => ({
+          value: category.id,
+          label: category.name,
+        }));
+
+        setAllPageTypes(formattedCategories);
+
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    const fetchElements = async () => {
+      try {
+        const response = await axios.get("/api/elements");
+        // Map the categories to a format suitable for react-select
+        const formattedCategories = response.data.map((category) => ({
+          value: category.id,
+          label: category.name,
+        }));
+
+        setAllElements(formattedCategories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchElements();
+    fetchThemes();
+    fetchPageTypes();
+
+  }, [])
 
   const handleFileChange = (event, type) => {
     const file = event.target.files[0]; // Get the selected file
@@ -67,10 +115,13 @@ export default function Page() {
       name: "",
       selectedThemes: [],
       selectedPages: [],
+      selectedElements: [],
+
     },
     validationSchema,
     onSubmit: (values) => {
       // Collect all data, including switches
+      console.log(values)
       const formData = {
         ...values,
         mobileLandingPage,
@@ -96,6 +147,8 @@ export default function Page() {
     setDesktopLandingPage(event.target.checked)
   };
 
+  
+
   return (
     <>
 
@@ -119,7 +172,8 @@ export default function Page() {
             <label for="name">
               Name
             </label>
-            <input id="name" type="text" />
+            <input id="name" type="text" onChange={formik.handleChange}
+              value={formik.values.name} />
             {formik.touched.name && formik.errors.name && (
               <div className="error text-danger">{formik.errors.name}</div>
             )}
@@ -195,13 +249,13 @@ export default function Page() {
                 />
 
                 <div className="d-flex ">
-                  <div className="upload_icon_desktop me-3"           onClick={() => handleClick("desktop")}
-                   >
+                  <div className="upload_icon_desktop me-3" onClick={() => handleClick("desktop")}
+                  >
                     <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
                   </div>
 
-                  <div className="upload_icon_mobile"           onClick={() => handleClick("mobile")}
-                   >
+                  <div className="upload_icon_mobile" onClick={() => handleClick("mobile")}
+                  >
                     <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
                   </div>
                 </div>
@@ -226,16 +280,31 @@ export default function Page() {
                     <div className="error text-danger ">{formik.errors.selectedPages}</div>
                   )}
 
-                  <div className="mt-3">
-                    <div className="elements">
-                      <div className="element-div"> Element </div>
-                      <div className="element-div"> Element </div>
-                      <div className="element-div"> Element </div>
-                    </div>
-                  </div>
+
 
                 </div>
+
+              
                 {/* Page Type End  */}
+
+                {/* Element Div  */}
+                <div className="Elements_div mb-3">
+                  <Select
+                    id="elements"
+                    isMulti
+                    options={allElements} // Use the options for elements
+                    value={formik.values.selectedElements} // Link it to formik
+                    onChange={(selected) => {
+                      formik.setFieldValue("selectedElements", selected); // Update formik field
+                      setSelectedElements(selected); // Update state
+                    }}
+                    placeholder="Select Elements"
+                  />
+                  {formik.touched.selectedElements && formik.errors.selectedElements && (
+                    <div className="error text-danger">{formik.errors.selectedElements}</div>
+                  )}
+                </div>
+                {/* End Element Div  */}
 
                 {/* Delete Icon DIV  */}
                 <div className="delete-icon">

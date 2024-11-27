@@ -54,6 +54,9 @@ const Sidebar = () => {
                 <li>
                     <Link href="/admin/pages/add">Add Page</Link>
                 </li>
+                <li>
+                    <Link href="/admin/themes/add">Add Theme</Link>
+                </li>
                 {/* <li>
                     <Link href="/admin/settings">Settings</Link>
                 </li> */}
