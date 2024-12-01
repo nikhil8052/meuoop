@@ -39,7 +39,7 @@ export async function POST(req) {
       );
     }
 
-    var type ='landing-page';
+    var type ='landing_page';
     // Create the flow
     const newFlow = await prisma.flows.create({
       data: {
@@ -107,6 +107,7 @@ export async function POST(req) {
       JSON.stringify({
         message: 'Flow successfully created and categories added.',
         flowId: newFlow.id,
+        code:200
       }),
       {
         status: 201,

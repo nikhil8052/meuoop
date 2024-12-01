@@ -7,6 +7,8 @@ import Paper from "@mui/material/Paper";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useRouter } from 'next/router';
+
 
 export default function Page() {
 
@@ -80,6 +82,9 @@ export default function Page() {
     fetchThemes();
     fetchPageTypes();
 
+
+
+
   }, [])
 
 
@@ -144,7 +149,6 @@ export default function Page() {
         status: 'draft'
       };
 
-      console.log("Data to be sent:", formData);
 
       // Post the landing page
       var PostLandingPage = async () => {
@@ -155,6 +159,13 @@ export default function Page() {
             },
           });
           console.log('Response:', response.data); // Access the response data
+          if( response.data.code && response.data.code ==200){
+            alert(" Data saved successfully");
+            window.location='/admin/dashboard';
+          }else {
+            alert('Something went wrong...');
+          }
+          
         } catch (error) {
           console.error('Error posting data:', error.response?.data || error.message);
         }

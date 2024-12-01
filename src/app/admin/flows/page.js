@@ -41,9 +41,17 @@ const UserList = () => {
   // Define columns for DataTable
   const columns = [
     { name: 'Name', selector: row => row.name, sortable: true },
-    { name: 'Type', selector: row => row.type, sortable: true },
-    { name: 'Total Images', selector: row => row.total_images, sortable: true },
-    { name: 'Description', selector: row => row.description, sortable: true },
+    {
+      name: 'Type',
+      selector: row => {
+        if (row.type === 'ux_flow') return 'UX Flow';
+        if (row.type === 'landing_page') return 'Landing Page';
+        return row.type; // Default case if type is neither 'ux_flow' nor 'landing_page'
+      },
+      sortable: true
+    },
+        { name: 'Image count', selector: row => row.total_images, sortable: true },
+    { name: 'Description', selector: row => row.description || "Not available", sortable: true },
 
     {
       name: 'Status',
