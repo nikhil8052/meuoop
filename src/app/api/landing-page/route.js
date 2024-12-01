@@ -24,7 +24,7 @@ export async function GET(req) {
 }
 export async function POST(req) {
   try {
-    const { name, status, selectedThemes, selectedPages, selectedElements, screen_type } = await req.json();
+    const { name, status, selectedThemes, selectedPages, selectedElements, screen_type , mobileTemUrl , desktopTemUrl } = await req.json();
 
     // Input validation
     if (!name || !status || !selectedThemes || !selectedPages || !selectedElements || !screen_type) {
@@ -78,6 +78,29 @@ export async function POST(req) {
     await prisma.flow_pages.createMany({
       data: pagesData,
     });
+
+
+    // Store the images now 
+
+    const newImage = await prisma.images.create({
+      data: {
+        flow_id: newFlow.id,
+        url: mobileTemUrl,
+        order_id: 0,
+        status: "public",
+      },
+    });
+
+
+    const newImage1 = await prisma.images.create({
+      data: {
+        flow_id: newFlow.id,
+        url: desktopTemUrl,
+        order_id: 0,
+        status: "public",
+      },
+    });
+
 
 
     return new Response(

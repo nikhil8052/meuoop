@@ -21,7 +21,8 @@ export default function Page() {
   const [allThemes, setAllThemes] = useState([]);
   const [allPageTypes, setAllPageTypes] = useState([]);
   const [allElements, setAllElements] = useState([]);
-
+  const [desktopTemUrl, setDesktopTemUrl] = useState(false);
+  const [mobileTemUrl, setMobileTemUrl] = useState(false);
 
 
 
@@ -81,16 +82,6 @@ export default function Page() {
 
   }, [])
 
-  const handleFileChange = (event, type) => {
-    const file = event.target.files[0]; // Get the selected file
-    if (type === "desktop") {
-      setDesktopFile(file);
-    } else if (type === "mobile") {
-      setMobileFile(file);
-    }
-
-
-  };
 
 
   const handleClick = (type) => {
@@ -125,22 +116,21 @@ export default function Page() {
       // Collect all data, including switches
       console.log("Mobile:", mobileLandingPage, "Desktop:", desktopLandingPage);
 
-      if(!mobileLandingPage && !desktopLandingPage ){
+      if (!mobileLandingPage && !desktopLandingPage) {
         alert(" Select the screen type.");
-        return ; 
+        return;
       }
-      var screen_type="";
+      var screen_type = "";
       // Get the screen type 
-      if(mobileLandingPage){
-        screen_type="mobile";
-      }else if(desktopLandingPageLandingPage ){
-        screen_type="desktop";
-      }else if (mobileLandingPage || desktopLandingPageLandingPage ){
-        screen_type="both";
-
+      if (mobileLandingPage) {
+        screen_type = "mobile";
+      } else if (desktopLandingPage) {
+        screen_type = "desktop";
+      } else if (mobileLandingPage || desktopLandingPage) {
+        screen_type = "both";
       }
 
-      if(screen_type==""){
+      if (screen_type == "") {
         alert(" Something went wrong...");
       }
 
@@ -149,11 +139,13 @@ export default function Page() {
         mobileLandingPage,
         desktopLandingPage,
         screen_type,
-        status:'draft'
+        desktopTemUrl,
+        mobileTemUrl,
+        status: 'draft'
       };
-  
+
       console.log("Data to be sent:", formData);
-  
+
       // Post the landing page
       var PostLandingPage = async () => {
         try {
@@ -167,11 +159,11 @@ export default function Page() {
           console.error('Error posting data:', error.response?.data || error.message);
         }
       };
-  
+
       PostLandingPage();
     },
   });
-  
+
 
   const handleTheme = (selected) => {
     setSelectedThemes(selected);
@@ -192,43 +184,36 @@ export default function Page() {
   const handlePublish = () => {
     formik.handleSubmit(); // Call the formik submit handler
   };
-  
 
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-
-    if (!file) {
-      console.error("No file selected");
-      return;
-    }
-    const urlParams = new URLSearchParams(window.location.search);
-    const flowId = urlParams.get("flow_id");
+  const handleFileChange = async (event, type) => {
+    const file = event.target.files[0]; // Get the selected file
     const formData = new FormData();
+
     formData.set("image", file);
-    if (flowId) {
-      formData.set("flow_id", flowId);
-      formData.set("status", 1);
-      formData.set("order_id", 1);
-
-    }
-
     try {
-      const response = await fetch("/api/images", {
+      const response = await fetch("/api/images/tem-upload", {
         method: "POST",
         body: formData,
       });
       const data = await response.json();
 
-      if (data.url) {
-        setImages([...images, data.url]);
-      }
-
       console.log("Image uploaded successfully:", data);
+
+      var tem_image_path = data.url;
+
+      if (type === "desktop") {
+        setDesktopTemUrl(tem_image_path);
+      } else if (type === "mobile") {
+        // setMobileFile(file);
+        setMobileTemUrl(tem_image_path);
+
+      }
     } catch (error) {
       console.error("Error uploading image:", error.message);
       alert("Upload failed: " + error.message);
     }
+
   };
 
 
@@ -332,14 +317,17 @@ export default function Page() {
                 />
 
                 <div className="d-flex ">
-                  <div className="upload_icon_desktop me-3" onClick={() => handleClick("desktop")}
+                  <div className={desktopTemUrl ? "p-0 m-0" : "upload_icon_desktop me-3 "} onClick={() => handleClick("desktop")}
                   >
-                    <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
+              
+                        <Image height={desktopTemUrl ? 130 : 50} width={desktopTemUrl ? 200 : 50}  src={desktopTemUrl ? desktopTemUrl : "/images/plus.svg"} className={desktopTemUrl ? "p-0 m-0" : ""} alt="Upload Icon" />
+                      
                   </div>
 
-                  <div className="upload_icon_mobile" onClick={() => handleClick("mobile")}
+                  <div className={mobileTemUrl ? "p-0 m-0" : "upload_icon_mobile "} onClick={() => handleClick("mobile")}
                   >
-                    <Image height={50} width={50} src="/images/plus.svg" alt="Upload Icon" />
+                      <Image height={mobileTemUrl ? 130 : 50} width={mobileTemUrl ? 200 : 50}  src={mobileTemUrl ? mobileTemUrl : "/images/plus.svg"} className={mobileTemUrl ? "p-0 m-0" : ""} alt="Upload Icon" />
+
                   </div>
                 </div>
                 {/* Page Type Start  */}
@@ -367,7 +355,7 @@ export default function Page() {
 
                 </div>
 
-              
+
                 {/* Page Type End  */}
 
                 {/* Element Div  */}
