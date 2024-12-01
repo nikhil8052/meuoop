@@ -16,9 +16,7 @@ const MeuooopComponent = () => {
 
         <div>
              <Header/>
-            
-
-            
+              
         </div>
     );
 };

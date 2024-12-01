@@ -50,7 +50,6 @@ export async function POST(req) {
       },
     });
 
-    console.log(newFlow , " New flow is creatd man ")
     // Insert selected categories into the `flow_categories` table
     const flowCategoriesData = categories.map((category) => ({
       flow_id: newFlow.id,
@@ -65,7 +64,7 @@ export async function POST(req) {
     return new Response(
       JSON.stringify({
         message: 'Flow successfully created and categories added',
-        flowId: newFlow.id,
+        flow_id: newFlow.id,
         categoriesAdded: flowCategoriesData.length,
       }),
       {

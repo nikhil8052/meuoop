@@ -1,16 +1,14 @@
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server"; // Ensure NextResponse is imported correctly
-const { connection } = require('../lib/db'); // Adjust path as needed
+import prisma from '@/lib/prisma';
 
 export async function POST(req) {
   try {
     const data = await req.formData();
     const file = data.get('image');
     const flowId = data.get('flow_id'); // Assume flow_id is provided in the formData
-    const status = data.get('status'); // Assume flow_id is provided in the formData
-    const order_id = data.get('order_id'); // Assume flow_id is provided in the formData
-
-
+    const status = data.get('status'); // Assume status is provided in the formData
+    const order_id = data.get('order_id') || 0;
 
     if (!file) {
       return new Response(JSON.stringify({ message: "Image not found" }), { status: 401 });
@@ -28,21 +26,18 @@ export async function POST(req) {
     // Write the file to the public directory
     await writeFile(filePath, buffer);
 
-    // Save the file path and flow_id in the database
-    const query = `INSERT INTO images (flow_id, url, order_id, status) VALUES (?, ?, ?,?)`;
-    await new Promise((resolve, reject) => {
-      connection.query(query, [flowId, fileName, order_id, status], (err, results) => {
-        if (err) {
-          console.error("Error saving image to database:", err);
-          return reject(
-            new Response(JSON.stringify({ message: "Database error", details: err.message }), {
-              status: 500,
-              headers: { "Content-Type": "application/json" },
-            })
-          );
-        }
-        resolve(results);
-      });
+    // Save the file path and flow_id in the database using Prisma
+    const flowIdInt = parseInt(flowId, 10);
+    const orderIdInt = parseInt(order_id, 10);
+
+
+    const newImage = await prisma.images.create({
+      data: {
+        flow_id: flowIdInt,
+        url: fileName,
+        order_id: orderIdInt,
+        status: status,
+      },
     });
 
     // Return success response with the file URL

@@ -88,6 +88,8 @@ export default function Page() {
     } else if (type === "mobile") {
       setMobileFile(file);
     }
+
+
   };
 
 
@@ -110,26 +112,66 @@ export default function Page() {
 
 
   // Formik for handling form state
+  // HANDLE THE DATA HERE 
   const formik = useFormik({
     initialValues: {
       name: "",
       selectedThemes: [],
       selectedPages: [],
       selectedElements: [],
-
     },
     validationSchema,
     onSubmit: (values) => {
       // Collect all data, including switches
-      console.log(values)
+      console.log("Mobile:", mobileLandingPage, "Desktop:", desktopLandingPage);
+
+      if(!mobileLandingPage && !desktopLandingPage ){
+        alert(" Select the screen type.");
+        return ; 
+      }
+      var screen_type="";
+      // Get the screen type 
+      if(mobileLandingPage){
+        screen_type="mobile";
+      }else if(desktopLandingPageLandingPage ){
+        screen_type="desktop";
+      }else if (mobileLandingPage || desktopLandingPageLandingPage ){
+        screen_type="both";
+
+      }
+
+      if(screen_type==""){
+        alert(" Something went wrong...");
+      }
+
       const formData = {
         ...values,
         mobileLandingPage,
         desktopLandingPage,
+        screen_type,
+        status:'draft'
       };
-      console.log("Form Data:", formData);
+  
+      console.log("Data to be sent:", formData);
+  
+      // Post the landing page
+      var PostLandingPage = async () => {
+        try {
+          const response = await axios.post('/api/landing-page', formData, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          console.log('Response:', response.data); // Access the response data
+        } catch (error) {
+          console.error('Error posting data:', error.response?.data || error.message);
+        }
+      };
+  
+      PostLandingPage();
     },
   });
+  
 
   const handleTheme = (selected) => {
     setSelectedThemes(selected);
@@ -147,11 +189,52 @@ export default function Page() {
     setDesktopLandingPage(event.target.checked)
   };
 
+  const handlePublish = () => {
+    formik.handleSubmit(); // Call the formik submit handler
+  };
   
+
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+
+    if (!file) {
+      console.error("No file selected");
+      return;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const flowId = urlParams.get("flow_id");
+    const formData = new FormData();
+    formData.set("image", file);
+    if (flowId) {
+      formData.set("flow_id", flowId);
+      formData.set("status", 1);
+      formData.set("order_id", 1);
+
+    }
+
+    try {
+      const response = await fetch("/api/images", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+
+      if (data.url) {
+        setImages([...images, data.url]);
+      }
+
+      console.log("Image uploaded successfully:", data);
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+      alert("Upload failed: " + error.message);
+    }
+  };
+
+
 
   return (
     <>
-
       <div className="header">
         <div className="logo">
           <p>Meuooop </p>

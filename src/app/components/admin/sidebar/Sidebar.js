@@ -32,6 +32,9 @@ const Sidebar = () => {
                 <li>
                     <Link href="/admin/pages"> Pages </Link>
                 </li>
+                <li>
+                    <Link href="/admin/themes"> Themes </Link>
+                </li>
                 <hr/>
                 <li>
                     <Link href="/admin/uploads/ux-flow">Add UX Flow</Link>

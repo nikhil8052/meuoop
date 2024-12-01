@@ -12,7 +12,7 @@ const UserList = () => {
     // Fetch users from the API
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/elements');
+        const response = await fetch('/api/themes');
         if (!response.ok) throw new Error('Failed to fetch users');
         const data = await response.json();
         setUsers(data);

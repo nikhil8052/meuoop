@@ -52,6 +52,34 @@ model flow_categories {
   @@index([flow_id], map: "fk_flow_id")
 }
 
+model flow_themes {
+  id         Int      @id @default(autoincrement())
+  flow_id    Int
+  theme_id   Int
+  status     Int?     @default(1) @db.TinyInt
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @db.Timestamp(0)
+  flows      flows    @relation(fields: [flow_id], references: [id], onDelete: Cascade, map: "fk_flow_id_themes")
+  themes     themes   @relation(fields: [theme_id], references: [id], onDelete: Cascade, map: "fk_theme_id")
+
+  @@index([flow_id], map: "fk_flow_id_themes")
+  @@index([theme_id], map: "fk_theme_id")
+}
+
+model flow_pages {
+  id         Int      @id @default(autoincrement())
+  flow_id    Int
+  page_id    Int
+  status     Int?     @default(1) @db.TinyInt
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @db.Timestamp(0)
+  flows      flows    @relation(fields: [flow_id], references: [id], onDelete: Cascade, map: "fk_flow_id_pages")
+  pages      pages    @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "fk_page_id")
+
+  @@index([flow_id], map: "fk_flow_id_pages")
+  @@index([page_id], map: "fk_page_id")
+}
+
 model flow_types {
   id          Int               @id @default(autoincrement())
   status      flow_types_status
@@ -73,6 +101,8 @@ model flows {
   created_at      DateTime           @default(now()) @db.Timestamp(0)
   updated_at      DateTime           @default(now()) @db.Timestamp(0)
   flow_categories flow_categories[]
+  flow_pages      flow_pages[]
+  flow_themes     flow_themes[]
 }
 
 model image_elements {
@@ -105,15 +135,17 @@ model pages {
   created_at DateTime     @default(now()) @db.Timestamp(0)
   updated_at DateTime     @default(now()) @db.Timestamp(0)
   created_by Int?
+  flow_pages flow_pages[]
 }
 
 model themes {
-  id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar(255)
-  status     String?  @default("active") @db.VarChar(50)
-  created_at DateTime @default(now()) @db.Timestamp(0)
-  updated_at DateTime @default(now()) @db.Timestamp(0)
-  created_by Int?
+  id          Int           @id @default(autoincrement())
+  name        String        @db.VarChar(255)
+  status      String?       @default("active") @db.VarChar(50)
+  created_at  DateTime      @default(now()) @db.Timestamp(0)
+  updated_at  DateTime      @default(now()) @db.Timestamp(0)
+  created_by  Int?
+  flow_themes flow_themes[]
 }
 
 enum flow_types_status {

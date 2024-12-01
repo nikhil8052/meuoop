@@ -24,12 +24,12 @@ export async function GET(req) {
 }
 export async function POST(req) {
   try {
-    const { name, description, type, status, categories, screen_type } = await req.json();
+    const { name, status, selectedThemes, selectedPages, selectedElements, screen_type } = await req.json();
 
     // Input validation
-    if (!name || !description || !type || !status || !categories || !screen_type   || categories.length === 0) {
+    if (!name || !status || !selectedThemes || !selectedPages || !selectedElements || !screen_type) {
       return new Response(
-        JSON.stringify({ error: 'All fields are required and categories cannot be empty' }),
+        JSON.stringify({ error: 'All fields are required.' }),
         {
           status: 400,
           headers: {
@@ -39,35 +39,51 @@ export async function POST(req) {
       );
     }
 
+    var type ='landing-page';
     // Create the flow
     const newFlow = await prisma.flows.create({
       data: {
         type,
         total_images: 0, // Default to 0 as in your original query
         name,
-        description,
         status,
         screen_type
       },
     });
 
-    console.log(newFlow , " New flow is creatd man ")
-    // Insert selected categories into the `flow_categories` table
-    const flowCategoriesData = categories.map((category) => ({
-      flow_id: newFlow.id,
-      category_id: category.value, // Assuming `category.value` contains the category ID
-      status: 1, // Assuming status 1 means active
-    }));
+    console.log(newFlow, " New flow is creatd man ")
 
-    await prisma.flow_categories.createMany({
-      data: flowCategoriesData,
+
+    // Insert the themes 
+    const themesData = selectedThemes.map((theme) => ({
+      flow_id: newFlow.id,
+      theme_id: theme.value,
+      status: 1
+    }))
+
+
+    await prisma.flow_themes.createMany({
+      data: themesData,
     });
+
+
+    // // Insert the pages 
+    const pagesData = selectedPages.map((page) => ({
+      flow_id: newFlow.id,
+      page_id: page.value,
+      status: 1
+    }))
+
+
+    await prisma.flow_pages.createMany({
+      data: pagesData,
+    });
+
 
     return new Response(
       JSON.stringify({
-        message: 'Flow successfully created and categories added',
+        message: 'Flow successfully created and categories added.',
         flowId: newFlow.id,
-        categoriesAdded: flowCategoriesData.length,
       }),
       {
         status: 201,
