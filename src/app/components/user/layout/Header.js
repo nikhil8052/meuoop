@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Header.module.css';
 
 export default function Header() {
     return (
@@ -7,29 +6,36 @@ export default function Header() {
 
             {/* Header Section */}
             <header className="main-header">
-                <div className="website-logo">Meuooop</div>
+                <div className="website-logo text-white">Meuooop </div>
                 <div className="search-bar">
-                    <i className="fas fa-search"></i>
+                    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
                     <input placeholder="Search app screen" type="text" />
                 </div>
-                <div className="actions">
-                    <a href="#">Get inspiration</a>
-                    <button className="getProBTN"> Get Pro </button>
-                    <div className='profileSection'>
-                        <a className="profile" href="#">
-                            <img
-                                alt="Profile picture"
-                                height="40"
-                                src="https://storage.googleapis.com/a1aa/image/pWYDB2jvvXIuGpfCgbum4MsnxDZmFOeqp5yw3nTeLdu8UnQnA.jpg"
-                                width="40"
-                            />
-                        </a>
+
+                <div className="header-actions">
+                    <div className='get-pro-and-inspiration'>
+                        <button className="getProBTN text-white"> Get Inspiration </button>
+                        <button className="getProBTN text-white"> Get Pro </button>
+
                     </div>
+                    <div className='profileSection '>
+                        <div className=' profile-image'>
+                            <a className="profile" href="#">
+                                <img
+                                    alt="Profile picture"
+                                    height="40"
+                                    src="https://storage.googleapis.com/a1aa/image/pWYDB2jvvXIuGpfCgbum4MsnxDZmFOeqp5yw3nTeLdu8UnQnA.jpg"
+                                    width="40"
+                                />
+                            </a>
+                        </div>
+
+                    </div>
+
                     <div className="menu-toggle" >
                         <i className="fas fa-bars"></i>
                     </div>
                 </div>
-
             </header>
         </>
     )
