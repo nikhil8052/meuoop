@@ -1,9 +1,8 @@
 // Import necessary modules
-const { connection } = require('../lib/db'); // Adjust path as needed
 import prisma from '@/lib/prisma';
 
 
-export async function GET(req) {
+export async function GET() {
 
   try {
     const flows = await prisma.elements.findMany({

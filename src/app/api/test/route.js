@@ -1,7 +1,7 @@
 // src/app/api/flows/route.js
 import prisma from '@/lib/prisma';
 
-export async function GET(req) {
+export async function GET() {
   try {
     const flows = await prisma.flow_themes.findMany();
     return new Response(JSON.stringify(flows), { status: 200 });

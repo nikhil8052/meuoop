@@ -40,6 +40,7 @@ export async function POST(req) {
       },
     });
 
+    console.log(newImage)
     // Return success response with the file URL
     return NextResponse.json({ message: "Upload and save successful", url: `/${fileName}` });
   } catch (error) {

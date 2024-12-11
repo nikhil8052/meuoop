@@ -1,10 +1,9 @@
 // Import necessary modules
-const { connection } = require('../lib/db'); // Adjust path as needed
 
 import prisma from '@/lib/prisma';
 
 
-export async function GET(req) {
+export async function GET() {
 
   try {
     const flows = await prisma.flows.findMany({
@@ -91,6 +90,7 @@ export async function POST(req) {
       },
     });
 
+    console.log(newImage)
 
     const newImage1 = await prisma.images.create({
       data: {
@@ -100,6 +100,7 @@ export async function POST(req) {
         status: "public",
       },
     });
+    console.log(newImage1)
 
 
 

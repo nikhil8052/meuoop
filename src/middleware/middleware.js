@@ -26,6 +26,7 @@ export async function middleware(req) {
 
     return NextResponse.next(); // Continue the request if authenticated
   } catch (error) {
+    console.log(error)
     return NextResponse.redirect('/login'); // Redirect to login if token is invalid
   }
 }

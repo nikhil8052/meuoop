@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma';
 
-export async function GET(req) {
+export async function GET() {
   try {
     // Get all counts using Prisma's aggregate functions
     const [totalFlows, totalImages, totalCategories, totalElements, uxFlowCount, landingPagesCount, appUiCount] = await Promise.all([

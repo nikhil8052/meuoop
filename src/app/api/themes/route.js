@@ -2,7 +2,7 @@
 import prisma from '@/lib/prisma';
 
 // GET request to fetch themes
-export async function GET(req) {
+export async function GET() {
   try {
     const themes = await prisma.themes.findMany({
       orderBy: {

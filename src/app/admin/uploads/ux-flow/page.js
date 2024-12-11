@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Select from "react-select";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
   const [description, setDescription] = useState(""); // State to store the description
   const [categories, setCategories] = useState([]); // State to store the description
   const [elements, setElements] = useState([]); // State to store the description
-  const [flowId, setFlowId] = useState(null);
+  // const [flowId, setFlowId] = useState(null);
   const [activeScreenType, setActiveScreenType] = useState("mobile"); // Initial screen type
   const [selectedElements, setSelectedElements] = useState([]);
 

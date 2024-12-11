@@ -1,4 +1,3 @@
-const { connection } = require('../../lib/db'); // Adjust the path if needed
 
 export async function PUT(req) {
   try {

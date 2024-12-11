@@ -7,8 +7,6 @@ import Paper from "@mui/material/Paper";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useRouter } from 'next/router';
-
 
 export default function Page() {
 
@@ -120,6 +118,7 @@ export default function Page() {
     onSubmit: (values) => {
       // Collect all data, including switches
       console.log("Mobile:", mobileLandingPage, "Desktop:", desktopLandingPage);
+      console.log(selectedElements)
 
       if (!mobileLandingPage && !desktopLandingPage) {
         alert(" Select the screen type.");
@@ -176,13 +175,14 @@ export default function Page() {
   });
 
 
-  const handleTheme = (selected) => {
-    setSelectedThemes(selected);
-  };
+  // const handleTheme = (selected) => {
+  //   setSelectedThemes(selected);
+  // };
 
-  const handlePageType = (selected) => {
-    setSelectedPages(selected);
-  };
+  
+  // const handlePageType = (selected) => {
+  //   setSelectedPages(selected);
+  // };
 
   const handleMobileSwitch = (event) => {
     setMobileLandingPage(event.target.checked)
@@ -192,9 +192,9 @@ export default function Page() {
     setDesktopLandingPage(event.target.checked)
   };
 
-  const handlePublish = () => {
-    formik.handleSubmit(); // Call the formik submit handler
-  };
+  // const handlePublish = () => {
+  //   formik.handleSubmit(); // Call the formik submit handler
+  // };
 
 
   const handleFileChange = async (event, type) => {
