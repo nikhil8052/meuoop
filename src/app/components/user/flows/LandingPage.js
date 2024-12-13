@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '../components/ProductCard'
+import LandingCard from '../components/LandingCard'
 export default function UxFlow() {
     return (
         <>
@@ -9,7 +9,7 @@ export default function UxFlow() {
 
                     <div className='ux-heading brand-heaing-text'>
 
-                        <h1 className='white-text'>  UX Flow </h1>
+                        <h1 className='white-text'> Landing Page </h1>
                     </div>
                     <div className='ux-flow-counts d-flex gap-3'>
 
@@ -28,9 +28,11 @@ export default function UxFlow() {
                 </div>
                 <div className='ux-flow-products d-flex gap-4'> 
 
-                  <ProductCard/>
-                  <ProductCard/>
-                  <ProductCard/>
+                  <LandingCard/>
+                  <LandingCard/>
+                  <LandingCard/>
+
+
 
 
                 </div>
