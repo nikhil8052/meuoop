@@ -462,23 +462,17 @@ ul li {
 
 
 
-.footer-first-section {
+/* .footer-first-section {
   background-image: url('/icons/footer_bg.svg');
   background-repeat: no-repeat;
-  /* Avoid repeating the image */
   display: flex;
-  /* Optional: for aligning content */
   align-items: center;
-  /* Center content vertically */
   justify-content: center;
-  /* Center content horizontally */
   color: black;
-  /* Adjust text color if needed */
   background-blend-mode: inherit;
-  /* Blend the color and image */
   height: 500px !important;
   background-color: #1B1D22;
-}
+} */
 
 
 
@@ -631,10 +625,10 @@ ul li {
 .foot-list:not(:last-child)::after {
   content: '';
   position: absolute;
-  height: 100%;
+  height: 90px;
   width: 1px;
   background-color: #2A2B2D;
-  top: 0;
+  top: 20px;
   right: -90px;
 }
 .foot-list ul li:not(:last-child) {
