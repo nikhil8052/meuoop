@@ -1,30 +1,17 @@
-import React from 'react'
-import Image from 'next/image';
+import React from 'react';
 
-
-export default function Footer() {
+const Footer = () => {
     return (
-        <>
-
-            <div className="footer-main-div">
-                <div className='footer-first-section'>
-
-                         
-                </div>
-                <div className='footer-second-section'>
-
-                    <div className='row'> 
-
-                            <div className='col-md-6'> 
-                                left section 
-                            </div>
-                            <div className='col-md-6'>
-
-                                Right section 
-                            </div>
-                    </div>
-                </div>
+        <footer className="footer">
+            <p>All screenshots are of their respective owners.</p>
+            <div className="socialIcons">
+                <a href="#"><i className="fab fa-linkedin"></i></a>
+                <a href="#"><i className="fab fa-xing"></i></a>
+                <a href="#"><i className="fab fa-instagram"></i></a>
             </div>
-        </>
-    )
-}
+            <p>About Us | Pricing | FAQ | Read Our Blog | Privacy Policy | Blogs | Contact Us | Terms & Conditions</p>
+        </footer>
+    );
+};
+
+export default Footer;

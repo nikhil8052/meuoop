@@ -6,7 +6,7 @@ import UxFlow from '../flows/UxFlow';
 import LandingPage from '../flows/LandingPage';
 import Subscription from '../components/Subscription';
 import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
+import Footer from '@/app/user/components/Footer';
 
 
 
@@ -14,8 +14,6 @@ export default function HomeContent() {
     return (
         <>
 
-
-                
                 <div >
 
                     <section className=' section section-1 homesection-1  site-padding text-white'>

@@ -614,6 +614,24 @@ ul li {
 
 /* End Home pag   */
 /* footer css */
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #2A2A2A;
+  border-radius: 20px;
+  margin-top: 40px;
+}
+.footer p {
+  margin: 10px 0;
+}
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
 .foot-right {
   display: flex;
   justify-content: space-around;
