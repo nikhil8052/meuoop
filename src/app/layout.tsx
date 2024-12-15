@@ -35,10 +35,9 @@ export default function RootLayout({
       >
         <Header />
         <div className='home-content-main-div'>
-
-          <div className='left-sidebar home-content-first-div '>
+          <div className='left-sidebar home-content-first-div'>
             <div className='header-left-icons-div '>
-              <div className='left-icon mb-3 cursor-pointer '>
+              <div className='left-icon mb-3 cursor-pointer'>
                 <Image
                   src="/icons/ux_flow.svg" 
                   alt="External Image Example"
@@ -77,7 +76,6 @@ export default function RootLayout({
             </div>
           </div>
           <div className="right-content-main-div home-content-second-div ">
-
               {children}
           </div>
         </div>

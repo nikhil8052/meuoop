@@ -8,8 +8,8 @@ const FAQ_DATA = [
 ];
 
 export default function FAQ() {
+    
     const [activeQuestion, setActiveQuestion] = useState(null);
-
     const toggleFAQ = (id) => {
         setActiveQuestion(activeQuestion === id ? null : id);
     };

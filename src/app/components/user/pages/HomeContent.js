@@ -14,13 +14,9 @@ export default function HomeContent() {
     return (
         <>
 
-
-                
                 <div >
-
                     <section className=' section section-1 homesection-1  site-padding text-white'>
-
-                            <h2> Inspiring UI/UX DesignsExplore the Best with Meuoop</h2>
+                    <h2> Inspiring UI/UX DesignsExplore the Best with Meuoop</h2>
                     </section>
                     <section className=' section section-2 second-section site-padding'>
                     <UxFlow/>

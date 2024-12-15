@@ -19,11 +19,7 @@ export default function HomeContent() {
                     <section className=' section section-3 '>
                     <FAQ/>
                     </section>
-                    
-
                 </div>
-
-
             </div>
 
         </>
