@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang="en">
         
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.className} ${poppins.className} antialiased`}
+        className={`${dmSans.className} ${poppins.className} antialiased`}
       >
         <Header />
         <div className='home-content-main-div'>
