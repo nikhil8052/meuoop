@@ -6,6 +6,7 @@
   --color-9ea: #9EA1AB;
   --color-3fa: #3F4250;
   --color-131: #13151A;
+  --text-aeaeae:#AEAEAE;
 }
 
 body {
@@ -64,6 +65,9 @@ h2 {
   background-color: var(--color-3fa);
 }
 
+.aeaeae-text{
+  color:  var(--text-aeaeae);
+}
 
 .color9ea {
   color: var(--color-9ea) !important;
@@ -615,3 +619,65 @@ ul li {
 
 
 /* End Home pag   */
+/* footer css */
+.foot-right {
+  display: flex;
+  justify-content: space-around;
+}
+
+.foot-list{
+  position: relative;
+}
+.foot-list:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #2A2B2D;
+  top: 0;
+  right: -90px;
+}
+.foot-list ul li:not(:last-child) {
+  padding-bottom: 15px;
+}
+.foot-left {
+  max-width: 230px;
+}
+.foot-left p {
+  font-weight: 300;
+}
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.linkedin-svg , .twitter-svg , .instagram-svg {
+  border:  1px solid #3A3C44;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.foot-list li a {
+  position: relative;  
+  text-decoration: none; 
+}
+
+
+.foot-list li a::after {
+  content: ''; 
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 0; 
+  height: 1px; 
+  background-color: #AEAEAE;  
+  transition: width 0.3s ease;  
+}
+.foot-list li a:hover::after {
+  width: 100%;  
+}
