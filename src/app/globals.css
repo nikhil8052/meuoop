@@ -10,3 +10,18 @@
   }
 }
 
+:root {
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+}
+
+/* Apply global font styles */
+body {
+  font-family: var(--font-dm-sans); /* Default font: DM Sans */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:  var(--font-dm-sans);
+}

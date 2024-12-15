@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 
 export default function Header() {
     return (
@@ -19,41 +20,47 @@ export default function Header() {
 
                 <div className="header-actions">
                     <div className='get-pro-and-inspiration'>
-                        <button className="getProBTN get-inspi text-white"> Get Inspiration 
+                        <a className="getProBTN get-inspi text-white"> Get Inspiration 
                             <div className='arrw-dwn-svg'>
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.998047 1.00293L6.99805 7.00293L12.998 1.00293" stroke="#E8E8E8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                              </svg>
                             </div>
-                        </button>
-                        <button className="getProBTN get-pro text-white"> Get Pro
+                        </a>
+                        <a className="getProBTN get-pro text-white"> Get Pro
                             <div className='arrw-up-right'>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 15L15 5M15 5L8.33333 5M15 5V11.6667" stroke="url(#paint0_linear_480_5799)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                             <defs>
-                             <linearGradient id="paint0_linear_480_5799" x1="5" y1="10" x2="15" y2="10" gradientUnits="userSpaceOnUse">
-                              <stop stop-color="#5200FF"/>
-                                  <stop offset="1" stop-color="#2D077E"/>
-                                 </linearGradient>
+<linearGradient id="paint0_linear_480_5799" x1="5" y1="10" x2="15" y2="10" gradientUnits="userSpaceOnUse">
+<stop stop-color="#5200FF"/>
+<stop offset="1" stop-color="#2D077E"/>
+</linearGradient>
 </defs>
 </svg>
 
 
                             </div>
                             
-                        </button>
+                        </a>
 
                     </div>
                     <div className='profileSection '>
                         <div className=' profile-image'>
                             <a className="profile" href="#">
-                                <img
+                                <Image
                                     alt="Profile picture"
-                                    height="40"
-                                    src="https://storage.googleapis.com/a1aa/image/pWYDB2jvvXIuGpfCgbum4MsnxDZmFOeqp5yw3nTeLdu8UnQnA.jpg"
-                                    width="40"
+                                    src="/icons/profile.png" 
+                                    width={40}
+                                    height={40}
                                 />
+                                    <div className='arrw-dwn-svg'>
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.998047 1.00293L6.99805 7.00293L12.998 1.00293" stroke="#E8E8E8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                             </svg>
+                            </div>
                             </a>
+                        
                         </div>
 
                     </div>

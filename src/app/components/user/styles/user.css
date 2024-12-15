@@ -13,6 +13,7 @@
 body {
   color: white;
   font-family: "DM Sans";
+
 }
 
 h1 {
@@ -67,10 +68,17 @@ h2 {
   color: var(--color-9ea) !important;
 }
 
+
+
+
+
+/* End Global Css  */
+
+
 .main-header {
   height: 86px;
   background: var(--color-131);
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   justify-content: space-between;
   padding: 15px;
@@ -89,6 +97,7 @@ h2 {
 .get-pro-and-inspiration {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .profile-image img {
@@ -674,4 +683,20 @@ ul li {
   position: absolute;
   left: 16px;
   top: 19%;
+}
+.get-inspi , .get-pro , .profile{
+  position: relative;
+  display:inline-block
+
+}
+
+.arrw-dwn-svg {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+}
+.arrw-up-right {
+  position: absolute;
+  right: -25px;
+  top: 4px;
 }
