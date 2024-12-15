@@ -1,3 +1,4 @@
+
 :root {
   --grey-text-color: #96989E;
   --grey-text-color-bcbcbc: #BCBCBC;
@@ -11,27 +12,20 @@
 
 body {
   color: white;
+  font-family: "DM Sans";
 }
 
 h1 {
   font-size: 3rem;
-  /* Customize size */
   font-weight: bold;
-  /* Customize weight */
 }
-
 h2 {
   font-size: 2.5rem;
   font-weight: 500;
 }
-
-
 .site-padding {
   padding: 5px;
-
 }
-
-
 .fs-24 {
   font-size: 24px;
 }
@@ -252,14 +246,11 @@ h2 {
 .search-bar input {
   width: 100%;
   padding: 10px 10px 10px 45px;
-  /* Add padding-left for space for the icon */
   border-radius: 25px;
-  /* Rounded corners */
   outline: none;
-  /* Remove outline */
   font-size: 16px;
   background-color: #1D1D24;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .sub-div-2 {
@@ -674,6 +665,13 @@ ul li {
   background-color: #AEAEAE;  
   transition: width 0.3s ease;  
 }
+
 .foot-list li a:hover::after {
   width: 100%;  
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 19%;
 }
