@@ -1,33 +1,100 @@
-:root{
-    --grey-text-color:#96989E
+:root {
+  --grey-text-color: #96989E;
+  --grey-text-color-bcbcbc: #BCBCBC;
+  --grey-3a3f: #3A3F49;
+  --grey-222: #22242B;
+  --color-9ea: #9EA1AB;
+  --color-3fa: #3F4250;
+  --color-131: #13151A;
 }
-.site-padding{
-    padding: 5px ;
+
+body {
+  color: white;
+}
+
+h1 {
+  font-size: 3rem;
+  /* Customize size */
+  font-weight: bold;
+  /* Customize weight */
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+
+.site-padding {
+  padding: 5px;
 
 }
-.main-header{
-    height: 75px;
-    background: #13151A;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    box-sizing: border-box;
+
+
+.fs-24 {
+  font-size: 24px;
 }
-.header-actions{
-    display: flex !important;
-    gap:20px ;
+
+.fs-14 {
+  font-size: 14px !important;
 }
-.website-logo{
-    font-size: 30px;
+
+.fs-32 {
+  font-size: 32px;
 }
-.get-pro-and-inspiration{
-    display: flex;
-    gap: 20px ;
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.white-text {
+  color: white;
+  font-weight: 300;
+}
+
+.bcbcbc-text {
+  color: var(--grey-text-color-bcbcbc)
+}
+
+.bg222 {
+  background-color: var(--grey-222);
+}
+
+.bg3fa {
+  background-color: var(--color-3fa);
+}
+
+
+.color9ea {
+  color: var(--color-9ea) !important;
+}
+
+.main-header {
+  height: 86px;
+  background: var(--color-131);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.header-actions {
+  display: flex !important;
+  gap: 20px;
+}
+
+.website-logo {
+  font-size: 30px;
+}
+
+.get-pro-and-inspiration {
+  display: flex;
+  gap: 20px;
 }
 
 .profile-image img {
-    border-radius: 50px ;
+  border-radius: 50px;
 }
 
 
@@ -35,121 +102,516 @@
 
 
 .home-content-main-div {
-    display: flex; /* Enable Flexbox */
-    width: 100%; /* Ensure the container spans the full width of the screen */
+  display: flex;
+  /* Enable Flexbox */
+  width: 100%;
+  /* Ensure the container spans the full width of the screen */
 }
 
 .home-content-first-div {
-    width: 300px; /* Set the fixed width for the first div */
+  width: 300px;
+  /* Set the fixed width for the first div */
 }
 
 .home-content-second-div {
-    flex-grow: 1; /* Make this div take the remaining available space */
-    background-color: #1B1D22 ;
+  flex-grow: 1;
+  /* Make this div take the remaining available space */
+  background-color: #1B1D22;
 
 }
-.left-sidebar{
 
-
-    width: 80px ;
-    background-color: black;
+.left-sidebar {
+  width: 87px;
+  background-color: var(--color-131);
+  min-height: 100vh;
 }
 
-.left-icon-text{
-    font-size: 14px !important;
-    color: #8E8E8E;
-    font-weight: 500;
+.header-left-icons-div {
+  width: inherit !important;
+}
+
+.left-icon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.left-icon-text {
+  font-size: 14px !important;
+  color: #8E8E8E;
+  font-weight: 500;
+  padding: 10px !important;
+
 }
 
 .homesection-1 {
-    background-image: url('/icons/home_bg.svg');
-    background-size: cover; /* Cover the entire section */
-    background-repeat: no-repeat; /* Avoid repeating the image */
-    background-position: center; /* Center the image */
-    height: 400px; /* Adjust height based on your requirement */
-    display: flex; /* Optional: for aligning content */
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    color: black; /* Adjust text color if needed */
-    background-blend-mode: multiply; /* Blend the color and image */
+  background-image: url('/icons/home_bg.svg');
+  background-size: cover;
+  /* Cover the entire section */
+  background-repeat: no-repeat;
+  /* Avoid repeating the image */
+  background-position: center;
+  /* Center the image */
+  height: 400px;
+  /* Adjust height based on your requirement */
+  display: flex;
+  /* Optional: for aligning content */
+  align-items: center;
+  /* Center content vertically */
+  justify-content: center;
+  /* Center content horizontally */
+  color: black;
+  /* Adjust text color if needed */
+  background-blend-mode: multiply;
+  /* Blend the color and image */
 
-    height: 500px !important;
-    background-color: #1B1D22 ;
-  }
+  height: 500px !important;
+  background-color: #1B1D22;
+}
 
 
 .ux-flow-main-div {
-    background: #13151A;
-    width: 100%;
-    padding: 20px;
-    color: white;
-    border-radius: 8px;
+  background: #13151A;
+  width: 100%;
+  padding: 20px;
+  color: white;
+  border-radius: 8px;
 }
 
-.ux-flow-name-div{
-    display: flex ;
-    flex-direction: row;
-    justify-content: space-between;
+.ux-flow-name-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.product-image-footer-wrapper{
-    padding: 15px ;
+.product-image-footer-wrapper {
+  padding: 15px;
 }
 
-.product-card-main-div{
-    background-color: #1E2129 ;
-    height: 100% ;
-    border-radius: 20px ;
-    width: 310px  ;
+.product-card-main-div {
+  background-color: #1E2129;
+  height: 100%;
+  border-radius: 20px;
+  /* width: 310px  ; */
 }
-.product-card-image{
-    padding-bottom: 10px ;
-}
-.brand-name{
 
-    color: var(--grey-text-color);
+.product-card-image {
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.brand-name {
+
+  color: var(--grey-text-color);
 }
 
 .brand-heading-text {
-    font-size: 2rem; /* Adjust text size */
-    font-weight: bold;
-    display: inline-block; /* Required to make the gradient work */
-    background: linear-gradient(89.42deg, #FFFFFF 0.22%, #747474 99.5%);
-    -webkit-background-clip: text; /* Clips the gradient to the text */
-    -webkit-text-fill-color: transparent; /* Makes the text color transparent */
-  }
-  
+  font-size: 2rem;
+  /* Adjust text size */
+  font-weight: bold;
+  display: inline-block;
+  /* Required to make the gradient work */
+  background: linear-gradient(89.42deg, #FFFFFF 0.22%, #747474 99.5%);
+  -webkit-background-clip: text;
+  /* Clips the gradient to the text */
+  -webkit-text-fill-color: transparent;
+  /* Makes the text color transparent */
+}
 
-  .ux-flow-count p:first-child{
-    color: var(--grey-text-color);
-    font-size: 17px ;
-  }
-  .ux-flow-count p:nth-child(2){
-    color: white ;
-    font-size: 40px  ;
-  }
 
-  .search-bar {
-    position: relative;
-    width: 300px; /* Adjust as needed */
-  }
-  
-  .search-bar i {
-    position: absolute;
-    top: 50%;
-    left: 25px;
-    transform: translateY(-50%);
-    color: #616170; /* Icon color */
-  }
-  
-  .search-bar input {
-    width: 100%;
-    padding: 10px 10px 10px 45px; /* Add padding-left for space for the icon */
-    border-radius: 25px; /* Rounded corners */
-    outline: none; /* Remove outline */
-    font-size: 16px;
-    background-color: #1D1D24;
-    font-weight: 300;
-  }
-  
-/* End Home pag ecss  */
+.ux-flow-count p:first-child {
+  color: var(--grey-text-color);
+  font-size: 17px;
+}
+
+.ux-flow-count p:nth-child(2) {
+  color: white;
+  font-size: 40px;
+}
+
+.search-bar {
+  position: relative;
+  width: 300px;
+  /* Adjust as needed */
+}
+
+.search-bar i {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translateY(-50%);
+  color: #616170;
+  /* Icon color */
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 10px 10px 45px;
+  /* Add padding-left for space for the icon */
+  border-radius: 25px;
+  /* Rounded corners */
+  outline: none;
+  /* Remove outline */
+  font-size: 16px;
+  background-color: #1D1D24;
+  font-weight: 300;
+}
+
+.sub-div-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* Add spacing between the two sections */
+}
+
+.plan-left-div {
+  background-color: #292C32;
+  color: white;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  width: 40%;
+  border-radius: 24px;
+  /* Optional: Rounded corners */
+}
+
+.plan-left-div * {
+  color: var(--grey-text-color-bcbcbc) !important;
+}
+
+.plan-right-div {
+  background-color: white;
+  color: black !important;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  width: 40%;
+  border: 1px solid #ccc;
+  /* Optional: Add border for better visibility */
+  border-radius: 8px;
+  /* Optional: Rounded corners */
+}
+
+.sub-free-plan-btn {
+  padding: 10px 20px;
+  background-color: var(--grey-3a3f);
+  /* Button color (blue) */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.sub-free-plan-btn:hover {
+  background-color: #0056b3;
+  /* Button hover color (darker blue) */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+.sub-div-1 {
+  display: flex;
+  /* Enable flexbox for alignment */
+  flex-direction: column;
+  /* Stack elements vertically */
+  justify-content: center;
+  /* Center vertically */
+  align-items: center;
+  /* Center horizontally */
+  background-color: #1D1D24;
+  /* Optional: Set background color */
+}
+
+.sub-main-heading {
+  margin-bottom: 20px;
+  /* Add spacing below the heading */
+  text-align: center;
+  /* Center align text */
+}
+
+.subscription-heading {
+  font-size: 2rem;
+  /* Adjust heading size */
+  font-weight: bold;
+  /* Make the text bold */
+  margin: 0;
+  /* Remove default margin */
+}
+
+.sub-plan-btns {
+  text-align: center;
+  /* Center the buttons and text */
+}
+
+.sub-plan-btns div {
+  display: flex;
+  justify-content: center;
+  /* Center buttons horizontally */
+  gap: 10px;
+  /* Add space between buttons */
+}
+
+.subbtn {
+  padding: 10px 20px;
+  /* Adjust button size */
+  border-radius: 25px;
+  /* Rounded corners */
+  background-color: #4CAF50;
+  /* Button background color */
+  border: none;
+  /* Remove border */
+  cursor: pointer;
+  /* Add pointer cursor */
+}
+
+.subbtn:hover {
+  background-color: #45a049;
+  /* Button hover color */
+}
+
+.white-text {
+  color: #ffffff;
+  /* Set text color to white */
+}
+
+.sub-plan-btns p {
+  margin-top: 10px;
+  /* Add space above the text */
+  font-size: 1rem;
+  /* Adjust font size */
+  color: #aaaaaa;
+  /* Lighter text color */
+}
+
+.section-3 {
+  padding: 20px;
+}
+
+
+
+/* FAQ */
+
+.faq-section-main-div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.faq-header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+}
+
+.faq-toggle-symbol {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-left: 10px;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.faq-item.active .faq-question {
+  color: white;
+}
+
+.faq-item.active .faq-toggle-symbol {
+  color: white;
+}
+
+
+
+.footer-first-section {
+  background-image: url('/icons/footer_bg.svg');
+  background-repeat: no-repeat;
+  /* Avoid repeating the image */
+  display: flex;
+  /* Optional: for aligning content */
+  align-items: center;
+  /* Center content vertically */
+  justify-content: center;
+  /* Center content horizontally */
+  color: black;
+  /* Adjust text color if needed */
+  background-blend-mode: inherit;
+  /* Blend the color and image */
+  height: 500px !important;
+  background-color: #1B1D22;
+}
+
+
+
+
+/* Dropdown */
+
+
+
+
+.main-dd-div {
+  padding: 14px;
+  border: 1px solid #FFFFFF33;
+  /* Semi-transparent border */
+  border-radius: 70px;
+  min-width: 150px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /* Center items vertically */
+  justify-content: space-between;
+  /* Space between text and icon */
+  cursor: pointer;
+  background-color: #222;
+  /* Optional background color */
+  padding: 25px 30px 25px 30px;
+}
+
+.dd-text {
+  font-size: 16px;
+  /* Font size */
+  margin: 0;
+  /* Remove default margin */
+}
+
+.dd-icon {
+  color: #ffffff;
+  /* White icon color */
+  font-size: 16px;
+  /* Match text size */
+}
+
+
+.dd-border-text-icon {
+  gap: 10px
+}
+
+
+
+.filter-container {
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-item:last-child {
+  margin-bottom: 20px;
+}
+
+.filter-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  accent-color: #6a0dad;
+}
+
+.filter-item label {
+  color: #b0b0b0;
+  font-size: 16px;
+}
+
+.filter-item input[type="checkbox"]:checked+label {
+  color: #ffffff;
+}
+
+.apply-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* END DROTPDOWN  */
+
+
+
+.badge1 {
+  background-color: #2c2c38;
+  color: #d1d1d1;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.landing-page-main-wrapper-right {
+  background: var(--color-3fa);
+  padding: 20px;
+  border-radius: 30px;
+  margin-right: 39p;
+  min-height: 400px;
+}
+
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1C1E24;
+  color: #A0A3B1;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.filter-button i {
+  margin-right: 8px;
+}
+
+
+
+
+
+/* End Home pag   */
