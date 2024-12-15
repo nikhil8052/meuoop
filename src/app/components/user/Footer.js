@@ -3,9 +3,9 @@ import styles from './Footer.module.css';
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className={styles.footer}>
             <p>All screenshots are of their respective owners.</p>
-            <div className="socialIcons">
+            <div className={styles.socialIcons}>
                 <a href="#"><i className="fab fa-linkedin"></i></a>
                 <a href="#"><i className="fab fa-xing"></i></a>
                 <a href="#"><i className="fab fa-instagram"></i></a>
