@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from "next/link";
+
 
 export default function Header() {
     return (
@@ -6,17 +8,17 @@ export default function Header() {
 
             {/* Header Section */}
             <header className="main-header">
-                <div className="website-logo text-white">Meuooop </div>
-                <div className="search-bar">
+            <Link href="/" className="text-decoration-none">
+            <div className="website-logo text-white">Meuooop</div>
+            </Link>               
+             <div className="search-bar">
                     <i className="fas fa-search"></i> {/* Font Awesome search icon */}
                     <input placeholder="Search app screen" type="text" />
                 </div>
-
                 <div className="header-actions">
                     <div className='get-pro-and-inspiration'>
                         <button className="getProBTN text-white"> Get Inspiration </button>
                         <button className="getProBTN text-white"> Get Pro </button>
-
                     </div>
                     <div className='profileSection '>
                         <div className=' profile-image'>
