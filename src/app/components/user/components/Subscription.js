@@ -7,7 +7,7 @@ export default function Subscription() {
             <div className="sub-main-div">
                 <div className='sub-div-1'>
                     <div className='sub-main-heading'>
-                        <h1 className='subscription-heading white-text'> Upgrade to ProGet unlimited access.</h1>
+                        <h2 className='subscription-heading gradient-text'> Upgrade to Pro <br></br>Get unlimited access.</h2>
                     </div>
                     <div className='sub-plan-btns'>
                         <div>

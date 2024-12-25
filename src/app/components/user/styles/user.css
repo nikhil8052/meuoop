@@ -29,6 +29,23 @@ h1,h2{
 .p_45{
   padding: 45px 0;
 }
+
+.cta-white{
+  background-color: #fff;
+  color: #000;
+  border-radius: 50px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  display: inline-flex;
+}
+.ux-flow-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
 h1 {
   font-size: 44px;
   font-weight: 600;
@@ -138,12 +155,12 @@ h2 {
 .home-content-second-div {
   flex-grow: 1;
   /* Make this div take the remaining available space */
-  background-color: #1B1D22;
+  background-color: #13151A;
 
 }
 
 .left-sidebar {
-  width: 87px;
+  width: 117px;
   background-color: var(--color-131);
   min-height: 100vh;
 }
@@ -152,7 +169,7 @@ h2 {
   width: inherit !important;
 }
 
-.left-icon{
+.left-icon , .left-icon a{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,6 +187,7 @@ h2 {
 .homesection-1 {
   background-image: url('/icons/home_bg.png');
   background-size: cover;
+  border-radius: 25px;
   /* Cover the entire section */
   background-repeat: no-repeat;
   /* Avoid repeating the image */
@@ -716,7 +734,7 @@ a.getProBTN.get-pro.text-white {
 }
 .home-bnr-wrap {
   padding-top: 200px;
-  padding-bottom: 150px;
+  padding-bottom: 250px;
 }
 .home-bnr-links ul {
   display: flex;
@@ -731,21 +749,29 @@ a.getProBTN.get-pro.text-white {
   content: '';
   height: 1px;
   width: 28%;
-
-
 }
 .home-bnr-links ul::after{
   right: 0;
   background-image: linear-gradient(270deg, #373940 0%, rgba(32, 34, 37, 0) 100%);
-  
 }
+
+.home-links{
+background-color: #1B1D22;
+}
+
 .home-bnr-links ul::before{
   left: 0;
   background-image: linear-gradient(90deg, rgba(32, 34, 37, 0) 0%, #373940 100%);
 }
+
+
 .home-bnr-links ul li a {
   border: 0.4px solid #FFFFFF33;
   background-color: #9ea1ab24;
   padding: 12px 25px;
   border-radius: 70px;
+  color: var(--color-9ea);
+}
+.ux-flow-counts {
+  gap: 60px !important;
 }

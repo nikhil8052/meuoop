@@ -9,7 +9,7 @@ export default function UxFlow() {
 
                     <div className='ux-heading brand-heaing-text'>
 
-                        <h1 className='white-text'> Landing Page </h1>
+                        <h2 className='gradient-text'> Landing Page </h2>
                     </div>
                     <div className='ux-flow-counts d-flex gap-3'>
 
@@ -21,7 +21,6 @@ export default function UxFlow() {
                         <div className='ux-flow-count'>
                             <p> Categories </p>
                             <p> 100+ </p>
-
                         </div>
 
                     </div>
@@ -32,8 +31,14 @@ export default function UxFlow() {
                   <LandingCard/>
                   <LandingCard/>
 
-
-
+                </div>
+                <div className='ux-flow-btn'>
+                    <a href='' className='cta-white'>View More 
+                        <div className='arrw-up-icon'>
+                        <img alt="arrw Image" loading="lazy" src="/icons/arrw-up-square.png">
+                        </img>
+                        </div>
+                    </a>
 
                 </div>
             </div>
