@@ -106,6 +106,7 @@ export default function RootLayout({
           </div>
         </div>
       </body>
+      
     </html>
   );
 }

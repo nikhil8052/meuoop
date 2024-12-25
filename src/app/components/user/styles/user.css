@@ -286,54 +286,16 @@ h2 {
 .sub-div-2 {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   gap: 20px;
   /* Add spacing between the two sections */
-}
-
-.plan-left-div {
-  background-color: #292C32;
-  color: white;
-  padding: 20px;
-  margin: 10px;
-  text-align: center;
-  width: 40%;
-  border-radius: 24px;
-  /* Optional: Rounded corners */
 }
 
 .plan-left-div * {
   color: var(--grey-text-color-bcbcbc) !important;
 }
 
-.plan-right-div {
-  background-color: white;
-  color: black !important;
-  padding: 20px;
-  margin: 10px;
-  text-align: center;
-  width: 40%;
-  border: 1px solid #ccc;
-  /* Optional: Add border for better visibility */
-  border-radius: 8px;
-  /* Optional: Rounded corners */
-}
 
-.sub-free-plan-btn {
-  padding: 10px 20px;
-  background-color: var(--grey-3a3f);
-  /* Button color (blue) */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.sub-free-plan-btn:hover {
-  background-color: #0056b3;
-  /* Button hover color (darker blue) */
-}
 
 ul {
   list-style-type: none;
@@ -375,17 +337,10 @@ ul li {
 }
 
 .sub-plan-btns {
-  text-align: center;
+  /* text-align: center; */
   /* Center the buttons and text */
 }
 
-.sub-plan-btns div {
-  display: flex;
-  justify-content: center;
-  /* Center buttons horizontally */
-  gap: 10px;
-  /* Add space between buttons */
-}
 
 .subbtn {
   padding: 10px 20px;
@@ -408,15 +363,6 @@ ul li {
 .white-text {
   color: #ffffff;
   /* Set text color to white */
-}
-
-.sub-plan-btns p {
-  margin-top: 10px;
-  /* Add space above the text */
-  font-size: 1rem;
-  /* Adjust font size */
-  color: #aaaaaa;
-  /* Lighter text color */
 }
 
 .section-3 {
@@ -774,4 +720,106 @@ background-color: #1B1D22;
 }
 .ux-flow-counts {
   gap: 60px !important;
+}
+
+.sub-plan-btns ul#pills-tab {
+  justify-content: center;
+}
+.annual-month-box {
+  display: flex;
+  gap: 20px;
+}
+.free-box {
+  width: 100%;
+  max-width: 413px;
+  background-color: #292C32;
+  border-radius: 24px;
+  padding: 40px 30px;
+}
+span.free-span-text {
+  font-size: 24px;
+  font-weight: 500;
+}
+.free-para {
+  font-size: 14px;
+  font-weight: 300;
+  padding: 12px 0 20px 0;
+}
+.price-text {
+  font-size: 32px;
+  font-weight: 500;
+}
+.free-btn a {
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  background: #3A3F49;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px 0;
+}
+.free-btn a:hover{
+  background-color: #5200FF;
+}
+.price-text span{
+  font-size: 24px;
+}
+.free-list ul li{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.free-box.pro-box {
+  background-color: #fff;
+
+ 
+}
+.annual-tab .free-box.pro-box {
+  margin-top: 40px;
+ 
+}
+.free-box.pro-box *{
+  color: #000;
+}
+.check {
+  min-width: 20px;
+}
+.free-box.pro-box .free-btn a{
+  color: #fff;
+  background-color: #5200FF;
+}
+.free-box.pro-box .free-btn a:hover{
+  background: #3A3F49;
+}
+.free-box.pro-box .check img {
+  filter: invert(1);
+}
+.violet-color
+{
+  color: #5200FF !important ;
+}
+.annual-month-box {
+  margin-top: 45px;
+}
+.free-pro-tabs .nav-pills {
+  background-color: #272A31;
+  border-radius: 50px;
+  max-width:300px;
+  margin: auto;
+  padding: 4px;
+}
+.free-pro-tabs .nav-pills .nav-link{
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 42px;
+  border-radius: 50px;
+  color: #B3B3B3;
+}
+.free-pro-tabs .nav-pills .nav-link.active {
+  background-color: #fff;
+  color: #000;
+}
+.p_65{
+  padding: 65px 0;
 }
