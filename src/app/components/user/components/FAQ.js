@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 const FAQ_DATA = [
-    { id: 1, question: "What is your return policy?", answer: "You can return any item within 30 days of purchase for a full refund." },
-    { id: 2, question: "Do you offer international shipping?", answer: "Yes, we offer worldwide shipping with additional charges." },
-    { id: 3, question: "How can I track my order?", answer: "You will receive a tracking link once your order has been shipped." },
-    { id: 4, question: "What payment methods do you accept?", answer: "We accept Visa, MasterCard, PayPal, and more." }
+    { id: 1, question: "What is Meuoop?", answer: "Meuoop is a platform that provides a rich collection of UX flows, UI screens, landing pages, and videos, offering designers the inspiration they need to create exceptional user experiences and interfaces." },
+    { id: 2, question: "How often do you update the library?", answer: "We update the Meuoop library every month to ensure you have access to the latest design inspirations and trends." },
+    { id: 3, question: "Can I cancel my subscription?", answer: "You can cancel your Meuoop subscription at any time. Please note that cancellations do not qualify for a refund. However, you will still have access to all membership features until the end of your current billing cycle. Find out how to cancel your subscription here." },
+
 ];
 
 export default function FAQ() {
@@ -16,7 +16,7 @@ export default function FAQ() {
 
     return (
         <div className="faq-section-main-div">
-            <h2 className="faq-header">Frequently Asked Questions</h2>
+            <h2 className="faq-header gradient-text">Frequently Asked <br></br> Questions</h2>
             {FAQ_DATA.map((faq) => (
                 <div 
                     key={faq.id} 

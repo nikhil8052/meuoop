@@ -38,7 +38,9 @@
     "react-dom": "^18",
     "react-pro-sidebar": "^1.1.0",
     "react-select": "^5.8.3",
+    "react-slick": "^0.30.3",
     "sequelize": "^6.37.5",
+    "slick-carousel": "^1.8.1",
     "winston": "^3.16.0",
     "yup": "^1.4.0"
   },

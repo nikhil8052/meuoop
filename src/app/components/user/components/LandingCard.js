@@ -6,10 +6,10 @@ export default function ProductCard() {
     return (
         <>
 
-            <div className="product-card-main-div">
+            <div className="product-card-main-div col-lg-4 p-0">
                 <div className="product-image-footer-wrapper">
                     {/* Image Section */}
-                    <div className="product-card-image">
+                    <div className="product-card-image-landing">
                         <Image
                             src="/uploads/landing1.svg" // Replace with your actual image path
                             alt="Product Image"

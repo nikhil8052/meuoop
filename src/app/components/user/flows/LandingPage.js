@@ -25,11 +25,20 @@ export default function UxFlow() {
 
                     </div>
                 </div>
-                <div className='ux-flow-products d-flex gap-4'> 
+                <div className='ux-flow-products'> 
 
+                 <div className='row top-cards'>
+                 <LandingCard/>
                   <LandingCard/>
                   <LandingCard/>
+                 </div>
+                 
+                 <div className='row bottom-cards'>
+                 <LandingCard/>
                   <LandingCard/>
+                  <LandingCard/>
+                 </div>
+                
 
                 </div>
                 <div className='ux-flow-btn'>
