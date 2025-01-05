@@ -39,6 +39,16 @@ h2 {
   gap: 5px;
   justify-content: center;
   display: inline-flex;
+  border: 1px solid transparent;
+}
+.cta-white:hover {
+  background: #13151a;
+  color: #fff;
+  border-color: #fff;
+}
+
+.cta-white:hover img {
+  filter: invert(1);
 }
 .ux-flow-btn {
   display: flex;
@@ -52,6 +62,11 @@ h1 {
 h2 {
   font-size: 32px;
   font-weight: 500;
+}
+h6{
+  font-size: 20px;
+  font-weight: 400;
+
 }
 .site-padding {
   /* padding: 5px; */
@@ -108,6 +123,7 @@ h2 {
   padding: 17px 30px;
   box-sizing: border-box;
   align-items: center;
+  position: relative;
 }
 
 .header-actions {
@@ -124,6 +140,7 @@ h2 {
   gap: 60px;
   align-items: center;
   font-size: 14px;
+  position: relative;
 }
 
 .profile-image img {
@@ -209,6 +226,7 @@ section.ux-flow-sec {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .product-image-footer-wrapper {
@@ -836,4 +854,39 @@ span.free-span-text {
   border-radius: 20px;
   margin: 0 16px;
   padding: 83px 0;
+}
+.get-inspi-drop {
+  position: absolute;
+  top: 100%;
+  max-width: 856px;
+  left: 0%;
+  transform: translateX(50%);
+  margin: auto;
+  background-color: #1C1E24;
+  border-radius: 20px;
+  box-shadow: 0px 0px 24px 0px #000000A1;
+
+}
+.get-inspi-drop .row .inspi-row-col {
+  padding: 35px 40px !important;
+}
+.get-inspi-drop .row .inspi-row-col:first-child{
+  border-right: 1px solid #414141;
+}
+.inspi-row-left p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #BCBCBC;
+  margin: 7px 0 20px 0;
+}
+.drop-cards img {
+  border-radius: 9px;
+  width: 100%;
+}
+.drop-row {
+  gap: 20px 0;
+}
+.drop-row p{
+  text-align: center;
+  margin-top: 8px;
 }

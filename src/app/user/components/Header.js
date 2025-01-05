@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import GetInspiration_drop from "@/app/user/components/GetInspiration-drop";
 
 export default function Header() {
   return (
@@ -36,8 +37,8 @@ export default function Header() {
               Get Inspiration
               <div className="arrw-dwn-svg">
                 <svg
-                  width="14"
-                  height="8"
+                  width="12"
+                  height="7 "
                   viewBox="0 0 14 8"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +53,8 @@ export default function Header() {
                 </svg>
               </div>
             </a>
+           
+
             <a className="getProBTN get-pro text-white">
               {" "}
               Get Pro
@@ -117,6 +120,8 @@ export default function Header() {
             </div>
           </div>
         </div>
+
+        <GetInspiration_drop></GetInspiration_drop>
       </header>
     </>
   );
