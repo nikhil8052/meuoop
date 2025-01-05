@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import GetInspiration_drop from "@/app/user/components/GetInspiration-drop";
+import Profile_drop from "@/app/user/components/profile_dropdown";
 
 export default function Header() {
   return (
@@ -118,6 +119,7 @@ export default function Header() {
                 </div>
               </a>
             </div>
+            <Profile_drop></Profile_drop>
           </div>
         </div>
 
