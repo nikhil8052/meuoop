@@ -890,3 +890,30 @@ span.free-span-text {
   text-align: center;
   margin-top: 8px;
 }
+
+
+
+.ux-slider-wrapper {
+  width: 100%; /* Make it responsive */
+  max-width: 1200px; /* Adjust max-width based on your design */
+  margin: 0 auto; /* Center align */
+  overflow: hidden; /* Prevent overflow issues */
+}
+
+.slick-slider {
+  display: flex;
+  flex-direction: row;
+}
+
+.slick-slide {
+  display: flex !important; /* Ensures items are flex-aligned */
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Adjust spacing between slides */
+  box-sizing: border-box; /* Avoid collapsing margins */
+}
+
+.product-card-main-div {
+  width: 300px; /* Match your design */
+  height: auto; /* Adjust based on content */
+}
