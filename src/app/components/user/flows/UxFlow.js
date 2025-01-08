@@ -6,10 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function UxFlow() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
+    arrows:false,
     speed: 200,
-    slidesToShow: 3, // Adjust for desktop
+    slidesToShow: 4, // Adjust for desktop
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -31,7 +32,7 @@ export default function UxFlow() {
 
   return (
     <>
-      <div className="ux-flow-main-div">
+      <div className="ux-flow-main-div uxflowbefore">
         <div className="ux-flow-name-div">
           <div className="ux-heading brand-heaing-text">
             <h2 className="gradient-text">UX Flow</h2>
@@ -49,8 +50,8 @@ export default function UxFlow() {
         </div>
 
         {/* <div className="ux-flow-products d-fle gap-4"> */}
-          <div className="ux-slider-wrapper">
-            <Slider {...settings}>
+          <div className="ux-slider-wrapper ux-flw-wrp">
+            <Slider {...settings} className="ux-slider">
               <ProductCard />
               <ProductCard />
               <ProductCard />

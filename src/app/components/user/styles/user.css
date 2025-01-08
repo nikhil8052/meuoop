@@ -164,9 +164,6 @@ h6{
   min-height: 100vh;
 }
 
-.header-left-icons-div {
-  width: inherit !important;
-}
 
 .left-icon,
 .left-icon a {
@@ -200,6 +197,7 @@ h6{
   margin:0 20px;
   color: white;
   margin-bottom: 20px;
+  position: relative;
   border-radius: 20px;
 }
 .right-side-div {
@@ -209,6 +207,7 @@ h6{
 }
 section.ux-flow-sec {
   background-color: #1b1d22;
+  overflow: hidden;
 }
 .ux-flow-name-div {
   display: flex;
@@ -221,10 +220,13 @@ section.ux-flow-sec {
   padding: 15px;
 }
 
-.product-card-main-div {
+.product-card-main-div , .product-card-main-div-slider {
   background-color: #1e2129;
   height: 100%;
   border-radius: 20px;
+
+}
+.product-card-main-div{
   width: 32%;
 }
 
@@ -592,6 +594,7 @@ ul li {
 .profile {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 a.getProBTN.get-pro.text-white {
   display: block;
@@ -795,6 +798,7 @@ span.free-span-text {
   padding: 83px 0;
 }
 .get-inspi-drop {
+  /* display: none; */
   position: absolute;
   top: 70%;
   max-width: 1100px;
@@ -833,27 +837,29 @@ span.free-span-text {
 .profileSection {
   position: relative;
 }
-
 .profile-drpdwn {
   position: absolute;
   top: 100%;
   right: 0;
   background-color: #1C1E24;
-  width: 300px;
+  width: 295px;
   z-index: 1;
   border-radius: 20px;
-  padding: 25px 30px;
+  padding: 33px 26px;
+  box-shadow: 0px 0px 24px 0px #000000A1;
 }
 .profile-drpdwn li {
   margin: 0;
-  margin-bottom: 25px;
+  padding: 16px 0;
+  border-bottom: 1px solid #313131;
 
 }
 .profile-drpdwn li a{
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
+  font-size: 500;
 }
 .profile-drpdwn li:last-child{
   margin: 0;
@@ -861,26 +867,125 @@ span.free-span-text {
 
 
 .ux-slider-wrapper {
-  width: 100%; /* Make it responsive */
-  max-width: 1200px; /* Adjust max-width based on your design */
-  margin: 0 auto; /* Center align */
-  overflow: hidden; /* Prevent overflow issues */
+  width: 100%; 
+  max-width: 1500px;
 }
 
-.slick-slider {
+.ux-slider .slick-slider {
   display: flex;
   flex-direction: row;
 }
 
-.slick-slide {
+.ux-slider .slick-slide {
   display: flex !important; /* Ensures items are flex-aligned */
-  justify-content: center;
-  align-items: center;
-  padding: 10px; /* Adjust spacing between slides */
-  box-sizing: border-box; /* Avoid collapsing margins */
+  margin: 0 15px;
+}
+.ux-slider .slick-list{
+  overflow: visible !important;
 }
 
-.product-card-main-div {
-  width: 300px; /* Match your design */
-  height: auto; /* Adjust based on content */
+.ux-slider .slick-slide > div {
+  width: 100%;
+}
+.product-card-main-div-slider img{
+  width: 100%;
+}
+.ux-slider-wrapper .slick-track {
+  display: flex !important;
+  margin: 0 -15px;
+}
+.ux-slider-wrapper{
+  position: relative;
+}
+.uxflowbefore::before , .ux-flw-wrp::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: -100%;
+  background-color: #1b1d22;
+  top: 0;
+  z-index: 2;
+}
+.ux-slider-wrapper::before{
+  background-color:#13151a ;
+  z-index: 1;
+}
+
+.drop-img-text {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.drop-img-text p {
+  font-size: 16px;
+  font-weight: 400;
+  /* gap: 20px; */
+}
+.request-btn a {
+  background-color: #fff;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 16px;
+  border-radius: 6px;
+}
+.request-btn {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+p.sign-out {
+  padding-top: 20px;
+  color: #616161;
+}
+.left-sidebar.home-content-first-div {
+  width: 8%;
+}
+
+.right-content-main-div.home-content-second-div {
+  width: 92%;
+}
+
+/* responsive css here ... */
+@media (max-width:1599px)
+{
+  .homesection-1 {
+    background-size: unset;
+    background-position: center;
+}
+.top-cards, .bottom-cards {
+  gap: 0 16px;
+}
+.foot-list:not(:last-child)::after {
+  right: -30px;
+}
+.home-bnr-wrap {
+  padding-top: 170px;
+  padding-bottom: 90px;
+}
+.left-sidebar.home-content-first-div {
+  width: 10%;
+}
+.right-content-main-div.home-content-second-div {
+  width: 90%;
+}
+.home-bnr-links ul::after, .home-bnr-links ul::before {
+  width: 25%;
+}
+.foot-sec {
+  padding-top: 270px;
+}
+.get-inspi-drop {
+  max-width: 800px;
+  transform: translateX(19%);
+}
+.profile-drpdwn {
+  width: 280px;
+
+}
 }

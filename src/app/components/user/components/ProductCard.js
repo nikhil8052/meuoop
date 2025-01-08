@@ -6,7 +6,7 @@ export default function ProductCard() {
     return (
         <>
 
-            <div className="product-card-main-div">
+            <div className="product-card-main-div-slider">
                 <div className="product-image-footer-wrapper">
                     {/* Image Section */}
                     <div className="product-card-image">

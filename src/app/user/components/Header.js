@@ -1,9 +1,21 @@
-import React from "react";
+'use client';
+import React,{ useState } from "react";
 import Image from "next/image";
 import GetInspiration_drop from "@/app/user/components/GetInspiration-drop";
 import Profile_drop from "@/app/user/components/profile_dropdown";
 
 export default function Header() {
+
+  const [isProfileOpen, setIsProfileOpen]= useState(false);
+
+  function handleProfile(){
+    setIsProfileOpen(!isProfileOpen)
+  }
+
+  const [isGetInspirationOpen , setIsGetInspirationOpen]=useState(false);
+  function getInspirationToggle(){
+    setIsGetInspirationOpen(!isGetInspirationOpen)
+  }
   return (
     <>
       {/* Header Section */}
@@ -33,7 +45,7 @@ export default function Header() {
 
         <div className="header-actions">
           <div className="get-pro-and-inspiration">
-            <a className="getProBTN get-inspi text-white">
+            <a className="getProBTN get-inspi text-white" onClick={getInspirationToggle}>
               {" "}
               Get Inspiration
               <div className="arrw-dwn-svg">
@@ -91,7 +103,7 @@ export default function Header() {
               </div>
             </a>
           </div>
-          <div className="profileSection ">
+          <div className="profileSection " onClick={handleProfile}>
             <div className=" profile-image">
               <a className="profile" href="#">
                 <Image
@@ -119,11 +131,12 @@ export default function Header() {
                 </div>
               </a>
             </div>
-            <Profile_drop></Profile_drop>
+            { isProfileOpen ? <Profile_drop/> : "" }
           </div>
         </div>
 
-        <GetInspiration_drop></GetInspiration_drop>
+        {isGetInspirationOpen ? <GetInspiration_drop/> : ""}
+        {/* <GetInspiration_drop> */}
       </header>
     </>
   );
