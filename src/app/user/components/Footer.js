@@ -15,7 +15,7 @@ export default function Footer() {
         </div> */}
         <div className="footer-second-section">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 foot-col-first">
               <div className="foot-left">
                 <p className="bcbcbc-text ">
                   All screenshots © of their respective owners.
@@ -90,7 +90,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 foot-col-second">
               <div className="foot-right">
                 <div className="foot-list">
                   <ul>

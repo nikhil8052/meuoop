@@ -18,11 +18,23 @@ export default function UxFlow() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2, // Tablet view
+          slidesToShow: 3, // Tablet view
         },
       },
       {
         breakpoint: 768,
+        settings: {
+          slidesToShow: 3, // Mobile view
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2, // Mobile view
+        },
+      },
+      {
+        breakpoint: 575,
         settings: {
           slidesToShow: 1, // Mobile view
         },

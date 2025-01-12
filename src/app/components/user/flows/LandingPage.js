@@ -31,13 +31,16 @@ export default function UxFlow() {
                  <LandingCard/>
                   <LandingCard/>
                   <LandingCard/>
+                  <LandingCard/>
+                  <LandingCard/>
+                  <LandingCard/>
                  </div>
                  
-                 <div className='row bottom-cards'>
+                 {/* <div className='row bottom-cards'>
                  <LandingCard/>
                   <LandingCard/>
                   <LandingCard/>
-                 </div>
+                 </div> */}
                 
 
                 </div>
