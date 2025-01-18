@@ -958,6 +958,45 @@ p.sign-out {
 .request-btn a:hover img {
   filter: invert(1);
 }
+.product-card-image-landing {
+  margin-bottom: 10px;
+}
+.flow-crds .product-card-main-div {
+  max-width: 20% !important;
+  justify-content:space-between;
+}
+.flow-crds{
+  flex-wrap:wrap;
+}
+.header-actions {
+  padding-right: 20px;
+}
+.page-main-heading-tab {
+  align-items: center;
+  justify-content: space-between;
+}
+.flw-tabs .nav {
+  background-color: #1D1F26;
+  /* width: 233px; */
+  padding: 4px;
+  border-radius: 50px;
+  justify-content: center;
+}
+.flw-tabs .nav li button{
+  font-size:16px;
+  font-weight:500;
+  color:#fff;
+  padding:10px 36px;
+  border-radius:50px;
+  
+}
+.flw-tabs .nav li{
+  margin:0;
+}
+.flw-tabs .nav-link.active{
+  border-radius:50px;
+  background-color:#13151A !important;
+}
 /* responsive css here ... */
 @media (max-width: 1599px) {
   .homesection-1 {

@@ -21,31 +21,25 @@ export default function HomeContent() {
                         </div>
                     </div>
                 </div>
-                <div className="p-3">
-                    <div className="row g-1">
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4">
-                            <LandingCard />
-                        </div>
-                    </div>
-                </div>
+                  <div className='ux-flow-products'> 
+                
+                                 <div className='row top-cards'>
+                                 <LandingCard/>
+                                  <LandingCard/>
+                                  <LandingCard/>
+                                  <LandingCard/>
+                                  <LandingCard/>
+                                  <LandingCard/>
+                                 </div>
+                                 
+                                 {/* <div className='row bottom-cards'>
+                                 <LandingCard/>
+                                  <LandingCard/>
+                                  <LandingCard/>
+                                 </div> */}
+                                
+                
+                                </div>
             </div>
         </>
     )
