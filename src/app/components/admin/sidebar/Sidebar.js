@@ -12,10 +12,7 @@ const Sidebar = () => {
                     <Link href="/admin/dashboard">Dashboard</Link>
                 </li>
                 
-             
-               
-
-                
+            
                 <hr/>
                 <li>
                     <Link href="/admin/flows"> Flows </Link>

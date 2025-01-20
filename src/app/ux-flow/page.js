@@ -2,6 +2,8 @@
 import React from 'react'
 
 import ProductCard from '@/app/user/components/ProductCard';
+import UserLayout from '@/app/user/layout/UserLayout';
+
 
 
 
@@ -9,6 +11,7 @@ export default function HomeContent() {
 
     return (
         <>
+        <UserLayout>
             <div className='right-content-main-div home-content-second-div p-3'>
                 <div className='page-main-heading'>
 
@@ -55,6 +58,7 @@ export default function HomeContent() {
                     </div>
                 </div>
             </div>
+            </UserLayout>
         </>
     )
 }

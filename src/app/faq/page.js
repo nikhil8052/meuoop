@@ -1,11 +1,9 @@
 'use client';
 import React from 'react'
-import Image from 'next/image';
 
 import FAQ from '@/app/components/user/components/FAQ';
-import Header from '@/app/components/user/layout/Header';
 
-
+import UserLayout from '@/app/user/layout/UserLayout';
 
 
 export default function HomeContent() {
@@ -17,7 +15,9 @@ export default function HomeContent() {
                 <div className='right-content-main-div home-content-second-div'>
 
                     <section className=' section section-3 '>
+                        <UserLayout>
                     <FAQ/>
+                    </UserLayout>
                     </section>
                     
 
