@@ -2,11 +2,11 @@
 import React from "react";
 import ProductCard from "@/app/user/components/ProductCard";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import ProductCardNew from "../user/components/ProductCardNew";
 
 export default function HomeContent() {
   return (
     <>
-      <div className="right-content-main-div home-content-second-div p-3">
         <div className="flw-tabs">
           <div className="page-main-heading-tab d-flex ">
             <div className="heading-div-wrapper">
@@ -60,10 +60,12 @@ export default function HomeContent() {
                       </button>
                     </div>
                     <div className="all-filters-ux d-flex flex-wrap gap-2 mb-2">
+                      <div className="badge1">All</div>
                       <div className="badge1">Finance</div>
-                      <div className="badge1">Finance</div>
-                      <div className="badge1">Finance</div>
-                      <div className="badge1">Finance</div>
+                      <div className="badge1">Social Media</div>
+                      <div className="badge1">Food Delivery</div>
+                      <div className="badge1">Messages</div>
+                  
                     </div>
                   </div>
                 </div>
@@ -72,12 +74,12 @@ export default function HomeContent() {
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
+                    <ProductCardNew />
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    <ProductCardNew />
                     <ProductCard />
                   </div>
                 </div>
@@ -124,7 +126,6 @@ export default function HomeContent() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
